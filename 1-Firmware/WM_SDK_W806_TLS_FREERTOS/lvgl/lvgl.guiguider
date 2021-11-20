@@ -1,0 +1,179 @@
+{
+	"projectName": "lvgl",
+	"boardPlatformSettings": {
+		"resolution": {
+			"width": "128",
+			"height": "128"
+		},
+		"color_depth": 16,
+		"name": "Simulator",
+		"OS": "Windows/Linux",
+		"mcu": "Simulator",
+		"mcuxpresso_config": {
+			"CMAKE_BUILD_TYPE": "null"
+		},
+		"display_part_number": [
+			"Simulator"
+		]
+	},
+	"BuildStatus": {
+		"supportPXP": false,
+		"enable_pxp": false
+	},
+	"version": "1.2.0-GA",
+	"lvConf": {
+		"LV_HOR_RES_MAX": "(128)",
+		"LV_VER_RES_MAX": "(128)",
+		"LV_COLOR_DEPTH": 16,
+		"LV_MEM_CUSTOM": false,
+		"LV_MEM_SIZE": "320",
+		"LV_MEM_ADR": false,
+		"LV_MEM_AUTO_DEFRAG": true,
+		"LV_MEM_CUSTOM_INCLUDE": "<stdlib.h>",
+		"LV_MEM_CUSTOM_ALLOC": "malloc",
+		"LV_MEM_CUSTOM_FREE": "free",
+		"LV_USE_GPU": true,
+		"LV_USE_GPU_NXP_PXP": "~~",
+		"LV_USE_GPU_NXP_PXP_AUTO_INIT": "~~",
+		"LV_USE_GPU_NXP_VG_LITE": "~~",
+		"LV_ATTRIBUTE_MEM_ALIGN_SIZE": "~~",
+		"LV_ATTRIBUTE_MEM_ALIGN": "~~",
+		"LV_DISP_DEF_REFR_PERIOD": "30"
+	},
+	"ImportFonts": {
+		"simsun": "simsun.woff",
+		"montserratMedium": "Montserrat-medium.ttf"
+	},
+	"FrontJson": [
+		{
+			"name": "screen",
+			"id": "screen",
+			"list": [
+				{
+					"name": "spinner_1",
+					"type": "spinner",
+					"left": 15,
+					"top": 16,
+					"is_move_animation": false,
+					"desX": 0,
+					"desY": 0,
+					"path_type": "linear",
+					"duration": 100,
+					"width": 100,
+					"height": 100,
+					"arc_length": 60,
+					"spin_time": 1000,
+					"preload_set_type": "LV_SPINNER_TYPE_SPINNING_ARC",
+					"preload_set_dir": "LV_SPINNER_DIR_FORWARD",
+					"part": "LV_SPINNER_PART_INDIC",
+					"state": "LV_STATE_DEFAULT",
+					"disable": false,
+					"padding_top": 5,
+					"padding_bottom": 5,
+					"padding_left": 5,
+					"padding_right": 5,
+					"bg_color": "#eeeef6",
+					"bg_grad_color": "#eeeef6",
+					"bg_opa": 0,
+					"bg_grad_dir": "LV_GRAD_DIR_NONE",
+					"line_color": "#00a1b5",
+					"line_width": 16,
+					"style": [
+						{
+							"part": "LV_SPINNER_PART_BG",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"padding_top": 5,
+							"padding_bottom": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"bg_color": "#eeeef6",
+							"bg_grad_color": "#eeeef6",
+							"bg_opa": 0,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"line_color": "#d5d6de",
+							"line_width": 16
+						},
+						{
+							"part": "LV_SPINNER_PART_INDIC",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"line_color": "#00a1b5",
+							"line_width": 16
+						}
+					],
+					"id": "mxtrq4ng",
+					"default_style": false
+				}
+			]
+		}
+	],
+	"FrontStatus": {},
+	"Application": {
+		"name": "testingJson",
+		"version": "test_v1",
+		"default_scr": "screen",
+		"theme": "LV_THEME_MATERIAL_FLAG_LIGHT",
+		"screen": [
+			{
+				"name": "screen",
+				"type": "scr",
+				"widgets": [
+					{
+						"name": "screen_spinner_1",
+						"type": "spinner",
+						"pos": [
+							15,
+							16
+						],
+						"size": [
+							100,
+							100
+						],
+						"is_move_animation": false,
+						"path_type": "linear",
+						"move_animation": {
+							"des_pos": [
+								0,
+								0
+							],
+							"duration": 100
+						},
+						"default_style": false,
+						"width": 100,
+						"height": 100,
+						"arc_length": 60,
+						"spin_time": 1000,
+						"preload_set_type": "LV_SPINNER_TYPE_SPINNING_ARC",
+						"preload_set_dir": "LV_SPINNER_DIR_FORWARD",
+						"style": [
+							{
+								"part": "LV_SPINNER_PART_BG",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"padding_top": 5,
+								"padding_bottom": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"bg_color": "#eeeef6",
+								"bg_grad_color": "#eeeef6",
+								"bg_opa": 0,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"line_color": "#d5d6de",
+								"line_width": 16
+							},
+							{
+								"part": "LV_SPINNER_PART_INDIC",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"line_color": "#00a1b5",
+								"line_width": 16
+							}
+						]
+					}
+				]
+			}
+		],
+		"event": []
+	}
+}

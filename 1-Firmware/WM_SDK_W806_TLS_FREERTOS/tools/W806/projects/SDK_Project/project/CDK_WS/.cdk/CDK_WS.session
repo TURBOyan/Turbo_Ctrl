@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="C:\Users\81927\Desktop\WM_SDK_W806\tools\W806\projects\SDK_Project\project\CDK_WS\CDK_WS.cdkws">
+  <int Value="0" Name="m_selectedTab"/>
+  <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\tools\W806\projects\SDK_Project\project\CDK_WS\CDK_WS.cdkws" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\app\src\main.c" Name="FileName"/>
+      <int Value="24" Name="FirstVisibleLine"/>
+      <int Value="39" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="131:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\include\wm_regs.h" Name="FileName"/>
+      <int Value="20" Name="FirstVisibleLine"/>
+      <int Value="39" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\wm_osal_rtos.c" Name="FileName"/>
+      <int Value="1226" Name="FirstVisibleLine"/>
+      <int Value="1242" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="79:3"/>
+        <wxString Value="1229:3"/>
+        <wxString Value="1231:3"/>
+        <wxString Value="1232:3"/>
+        <wxString Value="1234:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\include\os\wm_osal.h" Name="FileName"/>
+      <int Value="48" Name="FirstVisibleLine"/>
+      <int Value="192" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="192:3"/>
+        <wxString Value="691:3"/>
+        <wxString Value="695:3"/>
+        <wxString Value="696:3"/>
+        <wxString Value="699:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\include\arch\xt804\csi_config.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="4" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\platform\arch\xt804\bsp\system.c" Name="FileName"/>
+      <int Value="13" Name="FirstVisibleLine"/>
+      <int Value="26" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\platform\arch\xt804\bsp\startup.S" Name="FileName"/>
+      <int Value="102" Name="FirstVisibleLine"/>
+      <int Value="216" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\source\tasks.c" Name="FileName"/>
+      <int Value="2080" Name="FirstVisibleLine"/>
+      <int Value="2092" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="806:3"/>
+        <wxString Value="817:3"/>
+        <wxString Value="859:3"/>
+        <wxString Value="1644:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\include\arch\xt804\csi_core\csi_gcc.h" Name="FileName"/>
+      <int Value="1017" Name="FirstVisibleLine"/>
+      <int Value="1029" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\include\mpu_wrappers.h" Name="FileName"/>
+      <int Value="55" Name="FirstVisibleLine"/>
+      <int Value="69" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\include\arch\xt804\csi_dsp\csky_math.h" Name="FileName"/>
+      <int Value="2711" Name="FirstVisibleLine"/>
+      <int Value="2721" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="2708:3"/>
+        <wxString Value="2721:3"/>
+        <wxString Value="2734:3"/>
+        <wxString Value="2747:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\include\task.h" Name="FileName"/>
+      <int Value="106" Name="FirstVisibleLine"/>
+      <int Value="124" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="1211:3"/>
+      </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\include\FreeRTOSConfig.h" Name="FileName"/>
+      <int Value="97" Name="FirstVisibleLine"/>
+      <int Value="106" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\rtos\include\portmacro.h" Name="FileName"/>
+      <int Value="162" Name="FirstVisibleLine"/>
+      <int Value="176" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\81927\Desktop\WM_SDK_W806\app\src\wm_it.c" Name="FileName"/>
+      <int Value="2" Name="FirstVisibleLine"/>
+      <int Value="17" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>

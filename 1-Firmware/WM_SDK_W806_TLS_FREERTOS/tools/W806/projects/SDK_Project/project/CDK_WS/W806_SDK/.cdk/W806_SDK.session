@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\tools\W806\projects\SDK_Project\project\CDK_WS\W806_SDK\W806_SDK.cdkws">
+  <int Value="1" Name="m_selectedTab"/>
+  <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\tools\W806\projects\SDK_Project\project\CDK_WS\W806_SDK\W806_SDK.cdkws" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\app\src\main.c" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="79" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\tools\W806\projects\SDK_Project\project\CDK_WS\W806_SDK\bsp\src\init.c" Name="FileName"/>
+      <int Value="42" Name="FirstVisibleLine"/>
+      <int Value="49" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\app\src\mytask.c" Name="FileName"/>
+      <int Value="92" Name="FirstVisibleLine"/>
+      <int Value="101" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\app\src\wm_it.c" Name="FileName"/>
+      <int Value="73" Name="FirstVisibleLine"/>
+      <int Value="88" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\tools\W806\projects\SDK_Project\project\CDK_WS\W806_SDK\bsp\src\wwdg.c" Name="FileName"/>
+      <int Value="1" Name="FirstVisibleLine"/>
+      <int Value="11" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="z:\my_design\cdk\w806\my_software\wm_sdk_w806_tls_freertos\tools\w806\projects\sdk_project\project\cdk_ws\w806_sdk\bsp\inc\init.h" Name="FileName"/>
+      <int Value="16" Name="FirstVisibleLine"/>
+      <int Value="30" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\platform\drivers\wm_wdg.c" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="17" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="Z:\my_design\CDK\W806\My_Software\WM_SDK_W806_TLS_FREERTOS\platform\drivers\wm_cpu.c" Name="FileName"/>
+      <int Value="127" Name="FirstVisibleLine"/>
+      <int Value="142" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>
