@@ -126,6 +126,10 @@ DocumentUniqueId=PLAEZVJI
 Path=..\..\..\..\..\..\software_documents\AD19\share\Library\SELF\‘≠¿ÌÕºø‚\*.*
 IncludeSubFolders=1
 
+[SearchPath2]
+Path=..\..\..\..\..\software_documents\AD19\share\Library\TURBO_ADLib\*.*
+IncludeSubFolders=1
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
