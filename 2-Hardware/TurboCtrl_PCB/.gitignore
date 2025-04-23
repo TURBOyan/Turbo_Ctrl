@@ -10,3 +10,6 @@
 !/schematic/*.SchDoc
 !*.PrjPCB
 !*.PrjPCBStructure
+
+# 不忽略output文件夹下的所有内容
+!/output/**
