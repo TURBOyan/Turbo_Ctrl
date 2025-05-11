@@ -64,15 +64,25 @@ void Error_Handler(void);
 #define SPI_CS_GPIO_Port GPIOA
 #define ENC_Z_Pin GPIO_PIN_5
 #define ENC_Z_GPIO_Port GPIOA
+#define AL_Pin GPIO_PIN_7
+#define AL_GPIO_Port GPIOA
 #define BL_Pin GPIO_PIN_0
 #define BL_GPIO_Port GPIOB
+#define CL_Pin GPIO_PIN_1
+#define CL_GPIO_Port GPIOB
 #define BUTTON_Pin GPIO_PIN_2
 #define BUTTON_GPIO_Port GPIOB
 #define BUTTON_EXTI_IRQn EXTI2_3_IRQn
 #define AH_Pin GPIO_PIN_8
 #define AH_GPIO_Port GPIOA
+#define BH_Pin GPIO_PIN_9
+#define BH_GPIO_Port GPIOA
+#define CH_Pin GPIO_PIN_10
+#define CH_GPIO_Port GPIOA
 #define EN_GATE_Pin GPIO_PIN_4
 #define EN_GATE_GPIO_Port GPIOB
+#define FAULT_Pin GPIO_PIN_8
+#define FAULT_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

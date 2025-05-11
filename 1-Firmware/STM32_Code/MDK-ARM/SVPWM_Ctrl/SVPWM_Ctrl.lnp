@@ -7,7 +7,6 @@
 "svpwm_ctrl\adc.o"
 "svpwm_ctrl\i2c.o"
 "svpwm_ctrl\spi.o"
-"svpwm_ctrl\tim.o"
 "svpwm_ctrl\usart.o"
 "svpwm_ctrl\stm32f0xx_it.o"
 "svpwm_ctrl\stm32f0xx_hal_msp.o"

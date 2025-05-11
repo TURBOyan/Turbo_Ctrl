@@ -37,6 +37,7 @@ typedef struct
 
 bool DRV8301_Config(RegisterFile* pRegs, float requested_gain, float* actual_gain);
 int16_t DRV8301_Init(RegisterFile* pRegs);
+int16_t DRV8301_Motor_test(int16_t status);
 
 #ifdef __cplusplus
 }
