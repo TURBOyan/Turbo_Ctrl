@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "APP/inc",
+        "Core/Inc",
+        "Drivers/CMSIS/Device/ST/STM32F0xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32F0xx_HAL_Driver/Inc",
+        "Drivers/STM32F0xx_HAL_Driver/Inc/Legacy"
+      ],
+      "defines": [
+        "STM32F031x6",
+        "USE_HAL_DRIVER"
+      ],
+      "compilerPath": "D:\\software\\Tools\\GCC\\arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi\\bin\\arm-none-eabi-gcc.EXE"
+    }
+  ],
+  "version": 4
+}

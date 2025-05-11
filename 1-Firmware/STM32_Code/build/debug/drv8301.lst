@@ -1,0 +1,1803 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"drv8301.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "APP/src/drv8301.c"
+  18              		.section	.rodata.DRV8301_ReadReg.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC2:
+  21 0000 48414C5F 		.ascii	"HAL_SPI_TransmitReceive Err:0x%X\015\012\000"
+  21      5350495F 
+  21      5472616E 
+  21      736D6974 
+  21      52656365 
+  22              		.section	.text.DRV8301_ReadReg,"ax",%progbits
+  23              		.align	1
+  24              		.global	DRV8301_ReadReg
+  25              		.syntax unified
+  26              		.code	16
+  27              		.thumb_func
+  29              	DRV8301_ReadReg:
+  30              	.LVL0:
+  31              	.LFB44:
+   1:APP/src/drv8301.c **** #include "drv8301.h"
+   2:APP/src/drv8301.c **** #include "utils.h"
+   3:APP/src/drv8301.c **** 
+   4:APP/src/drv8301.c **** #include "stm32f0xx_hal.h"
+   5:APP/src/drv8301.c **** 
+   6:APP/src/drv8301.c **** #include "spi.h"
+   7:APP/src/drv8301.c **** 
+   8:APP/src/drv8301.c **** 
+   9:APP/src/drv8301.c **** static inline uint16_t build_ctrl_word(const CtrlMode_e ctrlMode,
+  10:APP/src/drv8301.c **** 																			 const RegName_e regName,
+  11:APP/src/drv8301.c **** 																			 const uint16_t data) {
+  12:APP/src/drv8301.c **** 		return ctrlMode | regName | (data & 0x07FF);
+  13:APP/src/drv8301.c **** }
+  14:APP/src/drv8301.c **** 
+  15:APP/src/drv8301.c **** int16_t DRV8301_ReadReg(const RegName_e regName, uint16_t* data)
+  16:APP/src/drv8301.c **** {
+  32              		.loc 1 16 1 view -0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 8
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              		.loc 1 16 1 is_stmt 0 view .LVU1
+  37 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  38              		.cfi_def_cfa_offset 20
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 2
+
+
+  39              		.cfi_offset 4, -20
+  40              		.cfi_offset 5, -16
+  41              		.cfi_offset 6, -12
+  42              		.cfi_offset 7, -8
+  43              		.cfi_offset 14, -4
+  44 0002 85B0     		sub	sp, sp, #20
+  45              		.cfi_def_cfa_offset 40
+  46 0004 0D00     		movs	r5, r1
+  17:APP/src/drv8301.c **** 	int16_t ret = 0;
+  47              		.loc 1 17 2 is_stmt 1 view .LVU2
+  48              	.LVL1:
+  18:APP/src/drv8301.c **** 	uint16_t tx_buf_=0, rx_buf_=0;
+  49              		.loc 1 18 2 view .LVU3
+  50              		.loc 1 18 11 is_stmt 0 view .LVU4
+  51 0006 0E26     		movs	r6, #14
+  52 0008 6E44     		add	r6, r6, sp
+  53 000a 0023     		movs	r3, #0
+  54 000c 3380     		strh	r3, [r6]
+  55              		.loc 1 18 22 view .LVU5
+  56 000e 03AF     		add	r7, sp, #12
+  57 0010 3B80     		strh	r3, [r7]
+  19:APP/src/drv8301.c **** 	tx_buf_ = build_ctrl_word(DRV8301_CtrlMode_Read, regName, 0);
+  58              		.loc 1 19 2 is_stmt 1 view .LVU6
+  59              	.LVL2:
+  60              	.LBB8:
+  61              	.LBI8:
+   9:APP/src/drv8301.c **** 																			 const RegName_e regName,
+  62              		.loc 1 9 24 view .LVU7
+  63              	.LBB9:
+  12:APP/src/drv8301.c **** }
+  64              		.loc 1 12 3 view .LVU8
+  12:APP/src/drv8301.c **** }
+  65              		.loc 1 12 29 is_stmt 0 view .LVU9
+  66 0012 334C     		ldr	r4, .L8
+  67 0014 0443     		orrs	r4, r0
+  68 0016 A4B2     		uxth	r4, r4
+  69              	.LVL3:
+  12:APP/src/drv8301.c **** }
+  70              		.loc 1 12 29 view .LVU10
+  71              	.LBE9:
+  72              	.LBE8:
+  73              		.loc 1 19 10 discriminator 1 view .LVU11
+  74 0018 3480     		strh	r4, [r6]
+  20:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_L;
+  75              		.loc 1 20 2 is_stmt 1 view .LVU12
+  76 001a 9020     		movs	r0, #144
+  77              	.LVL4:
+  78              		.loc 1 20 2 is_stmt 0 view .LVU13
+  79 001c 0022     		movs	r2, #0
+  80 001e 0821     		movs	r1, #8
+  81              	.LVL5:
+  82              		.loc 1 20 2 view .LVU14
+  83 0020 C005     		lsls	r0, r0, #23
+  84 0022 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  85              	.LVL6:
+  21:APP/src/drv8301.c **** 	delay_us(1);
+  86              		.loc 1 21 2 is_stmt 1 view .LVU15
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 3
+
+
+  87 0026 0120     		movs	r0, #1
+  88 0028 FFF7FEFF 		bl	delay_us
+  89              	.LVL7:
+  22:APP/src/drv8301.c **** 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
+  90              		.loc 1 22 2 view .LVU16
+  91              		.loc 1 22 8 is_stmt 0 view .LVU17
+  92 002c 2D48     		ldr	r0, .L8+4
+  93 002e FA23     		movs	r3, #250
+  94 0030 9B00     		lsls	r3, r3, #2
+  95 0032 0093     		str	r3, [sp]
+  96 0034 0123     		movs	r3, #1
+  97 0036 3A00     		movs	r2, r7
+  98 0038 3100     		movs	r1, r6
+  99 003a FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 100              	.LVL8:
+ 101              		.loc 1 22 6 discriminator 1 view .LVU18
+ 102 003e 03B2     		sxth	r3, r0
+ 103              	.LVL9:
+  23:APP/src/drv8301.c **** 	if (ret != HAL_OK)
+ 104              		.loc 1 23 2 is_stmt 1 view .LVU19
+ 105              		.loc 1 23 5 is_stmt 0 view .LVU20
+ 106 0040 002B     		cmp	r3, #0
+ 107 0042 3AD1     		bne	.L6
+  24:APP/src/drv8301.c **** 	{
+  25:APP/src/drv8301.c **** 		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
+  26:APP/src/drv8301.c **** 		return -1;
+  27:APP/src/drv8301.c **** 	}
+  28:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_H;
+ 108              		.loc 1 28 2 is_stmt 1 view .LVU21
+ 109 0044 9027     		movs	r7, #144
+ 110 0046 FF05     		lsls	r7, r7, #23
+ 111 0048 0122     		movs	r2, #1
+ 112 004a 0821     		movs	r1, #8
+ 113 004c 3800     		movs	r0, r7
+ 114 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 115              	.LVL10:
+  29:APP/src/drv8301.c **** 	
+  30:APP/src/drv8301.c **** 	delay_us(1);
+ 116              		.loc 1 30 2 view .LVU22
+ 117 0052 0120     		movs	r0, #1
+ 118 0054 FFF7FEFF 		bl	delay_us
+ 119              	.LVL11:
+  31:APP/src/drv8301.c **** 	
+  32:APP/src/drv8301.c **** 	tx_buf_ = build_ctrl_word(DRV8301_CtrlMode_Read, regName, 0);
+ 120              		.loc 1 32 2 view .LVU23
+ 121              		.loc 1 32 10 is_stmt 0 discriminator 1 view .LVU24
+ 122 0058 0E26     		movs	r6, #14
+ 123 005a 6E44     		add	r6, r6, sp
+ 124 005c 3480     		strh	r4, [r6]
+  33:APP/src/drv8301.c **** 	rx_buf_ = 0xffff;
+ 125              		.loc 1 33 2 is_stmt 1 view .LVU25
+ 126              		.loc 1 33 10 is_stmt 0 view .LVU26
+ 127 005e 03AC     		add	r4, sp, #12
+ 128 0060 0123     		movs	r3, #1
+ 129 0062 5B42     		rsbs	r3, r3, #0
+ 130 0064 2380     		strh	r3, [r4]
+  34:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_L;
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 4
+
+
+ 131              		.loc 1 34 2 is_stmt 1 view .LVU27
+ 132 0066 0022     		movs	r2, #0
+ 133 0068 0821     		movs	r1, #8
+ 134 006a 3800     		movs	r0, r7
+ 135 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 136              	.LVL12:
+  35:APP/src/drv8301.c **** 	delay_us(1);
+ 137              		.loc 1 35 2 view .LVU28
+ 138 0070 0120     		movs	r0, #1
+ 139 0072 FFF7FEFF 		bl	delay_us
+ 140              	.LVL13:
+  36:APP/src/drv8301.c **** 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
+ 141              		.loc 1 36 2 view .LVU29
+ 142              		.loc 1 36 8 is_stmt 0 view .LVU30
+ 143 0076 1B48     		ldr	r0, .L8+4
+ 144 0078 FA23     		movs	r3, #250
+ 145 007a 9B00     		lsls	r3, r3, #2
+ 146 007c 0093     		str	r3, [sp]
+ 147 007e 0123     		movs	r3, #1
+ 148 0080 2200     		movs	r2, r4
+ 149 0082 3100     		movs	r1, r6
+ 150 0084 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 151              	.LVL14:
+ 152              		.loc 1 36 6 discriminator 1 view .LVU31
+ 153 0088 04B2     		sxth	r4, r0
+ 154              	.LVL15:
+  37:APP/src/drv8301.c **** 	if (ret != HAL_OK)
+ 155              		.loc 1 37 2 is_stmt 1 view .LVU32
+ 156              		.loc 1 37 5 is_stmt 0 view .LVU33
+ 157 008a 002C     		cmp	r4, #0
+ 158 008c 1DD1     		bne	.L7
+  38:APP/src/drv8301.c **** 	{
+  39:APP/src/drv8301.c **** 		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
+  40:APP/src/drv8301.c **** 		return -1;
+  41:APP/src/drv8301.c **** 	}
+  42:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_H;
+ 159              		.loc 1 42 2 is_stmt 1 view .LVU34
+ 160 008e 9020     		movs	r0, #144
+ 161 0090 0122     		movs	r2, #1
+ 162 0092 0821     		movs	r1, #8
+ 163 0094 C005     		lsls	r0, r0, #23
+ 164 0096 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 165              	.LVL16:
+  43:APP/src/drv8301.c **** 
+  44:APP/src/drv8301.c **** 	delay_us(1);
+ 166              		.loc 1 44 2 view .LVU35
+ 167 009a 0120     		movs	r0, #1
+ 168 009c FFF7FEFF 		bl	delay_us
+ 169              	.LVL17:
+  45:APP/src/drv8301.c **** 
+  46:APP/src/drv8301.c **** 	if (rx_buf_ == 0xbeef) {
+ 170              		.loc 1 46 2 view .LVU36
+ 171              		.loc 1 46 14 is_stmt 0 view .LVU37
+ 172 00a0 03AB     		add	r3, sp, #12
+ 173 00a2 1B88     		ldrh	r3, [r3]
+ 174              		.loc 1 46 5 view .LVU38
+ 175 00a4 104A     		ldr	r2, .L8+8
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 5
+
+
+ 176 00a6 9342     		cmp	r3, r2
+ 177 00a8 17D0     		beq	.L5
+  47:APP/src/drv8301.c **** 			return -3;
+  48:APP/src/drv8301.c **** 	}
+  49:APP/src/drv8301.c **** 
+  50:APP/src/drv8301.c **** 	if (data) {
+ 178              		.loc 1 50 2 is_stmt 1 view .LVU39
+ 179              		.loc 1 50 5 is_stmt 0 view .LVU40
+ 180 00aa 002D     		cmp	r5, #0
+ 181 00ac 02D0     		beq	.L3
+  51:APP/src/drv8301.c **** 			*data = rx_buf_ & 0x07FF;
+ 182              		.loc 1 51 4 is_stmt 1 view .LVU41
+ 183              		.loc 1 51 20 is_stmt 0 view .LVU42
+ 184 00ae 5B05     		lsls	r3, r3, #21
+ 185 00b0 5B0D     		lsrs	r3, r3, #21
+ 186              		.loc 1 51 10 view .LVU43
+ 187 00b2 2B80     		strh	r3, [r5]
+ 188              	.LVL18:
+ 189              	.L3:
+  52:APP/src/drv8301.c **** 	}
+  53:APP/src/drv8301.c **** 	
+  54:APP/src/drv8301.c **** 	return 0;
+  55:APP/src/drv8301.c **** }
+ 190              		.loc 1 55 1 view .LVU44
+ 191 00b4 2000     		movs	r0, r4
+ 192 00b6 05B0     		add	sp, sp, #20
+ 193              		@ sp needed
+ 194              	.LVL19:
+ 195              		.loc 1 55 1 view .LVU45
+ 196 00b8 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 197              	.LVL20:
+ 198              	.L6:
+  25:APP/src/drv8301.c **** 		return -1;
+ 199              		.loc 1 25 3 is_stmt 1 view .LVU46
+ 200 00ba 0C4B     		ldr	r3, .L8+12
+ 201              	.LVL21:
+  25:APP/src/drv8301.c **** 		return -1;
+ 202              		.loc 1 25 3 is_stmt 0 view .LVU47
+ 203 00bc 0100     		movs	r1, r0
+ 204 00be 1800     		movs	r0, r3
+ 205              	.LVL22:
+  25:APP/src/drv8301.c **** 		return -1;
+ 206              		.loc 1 25 3 view .LVU48
+ 207 00c0 FFF7FEFF 		bl	printf
+ 208              	.LVL23:
+  26:APP/src/drv8301.c **** 	}
+ 209              		.loc 1 26 3 is_stmt 1 view .LVU49
+  26:APP/src/drv8301.c **** 	}
+ 210              		.loc 1 26 10 is_stmt 0 view .LVU50
+ 211 00c4 0124     		movs	r4, #1
+ 212 00c6 6442     		rsbs	r4, r4, #0
+ 213 00c8 F4E7     		b	.L3
+ 214              	.LVL24:
+ 215              	.L7:
+  39:APP/src/drv8301.c **** 		return -1;
+ 216              		.loc 1 39 3 is_stmt 1 view .LVU51
+ 217 00ca 084B     		ldr	r3, .L8+12
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 6
+
+
+ 218 00cc 0100     		movs	r1, r0
+ 219 00ce 1800     		movs	r0, r3
+ 220 00d0 FFF7FEFF 		bl	printf
+ 221              	.LVL25:
+  40:APP/src/drv8301.c **** 	}
+ 222              		.loc 1 40 3 view .LVU52
+  40:APP/src/drv8301.c **** 	}
+ 223              		.loc 1 40 10 is_stmt 0 view .LVU53
+ 224 00d4 0124     		movs	r4, #1
+ 225              	.LVL26:
+  40:APP/src/drv8301.c **** 	}
+ 226              		.loc 1 40 10 view .LVU54
+ 227 00d6 6442     		rsbs	r4, r4, #0
+ 228 00d8 ECE7     		b	.L3
+ 229              	.LVL27:
+ 230              	.L5:
+  47:APP/src/drv8301.c **** 	}
+ 231              		.loc 1 47 11 view .LVU55
+ 232 00da 0324     		movs	r4, #3
+ 233              	.LVL28:
+  47:APP/src/drv8301.c **** 	}
+ 234              		.loc 1 47 11 view .LVU56
+ 235 00dc 6442     		rsbs	r4, r4, #0
+ 236 00de E9E7     		b	.L3
+ 237              	.L9:
+ 238              		.align	2
+ 239              	.L8:
+ 240 00e0 0080FFFF 		.word	-32768
+ 241 00e4 00000000 		.word	hspi1
+ 242 00e8 EFBE0000 		.word	48879
+ 243 00ec 00000000 		.word	.LC2
+ 244              		.cfi_endproc
+ 245              	.LFE44:
+ 247              		.section	.text.DRV8301_WriteReg,"ax",%progbits
+ 248              		.align	1
+ 249              		.global	DRV8301_WriteReg
+ 250              		.syntax unified
+ 251              		.code	16
+ 252              		.thumb_func
+ 254              	DRV8301_WriteReg:
+ 255              	.LVL29:
+ 256              	.LFB45:
+  56:APP/src/drv8301.c **** 
+  57:APP/src/drv8301.c **** int16_t DRV8301_WriteReg(const RegName_e regName, const uint16_t data)
+  58:APP/src/drv8301.c **** {
+ 257              		.loc 1 58 1 is_stmt 1 view -0
+ 258              		.cfi_startproc
+ 259              		@ args = 0, pretend = 0, frame = 8
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261              		.loc 1 58 1 is_stmt 0 view .LVU58
+ 262 0000 30B5     		push	{r4, r5, lr}
+ 263              		.cfi_def_cfa_offset 12
+ 264              		.cfi_offset 4, -12
+ 265              		.cfi_offset 5, -8
+ 266              		.cfi_offset 14, -4
+ 267 0002 85B0     		sub	sp, sp, #20
+ 268              		.cfi_def_cfa_offset 32
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 7
+
+
+  59:APP/src/drv8301.c **** 	int16_t ret = 0;
+ 269              		.loc 1 59 2 is_stmt 1 view .LVU59
+ 270              	.LVL30:
+  60:APP/src/drv8301.c **** 	uint16_t tx_buf_=0, rx_buf_=0;
+ 271              		.loc 1 60 2 view .LVU60
+ 272              		.loc 1 60 11 is_stmt 0 view .LVU61
+ 273 0004 0E24     		movs	r4, #14
+ 274 0006 6C44     		add	r4, r4, sp
+ 275 0008 0023     		movs	r3, #0
+ 276 000a 2380     		strh	r3, [r4]
+ 277              		.loc 1 60 22 view .LVU62
+ 278 000c 03AD     		add	r5, sp, #12
+ 279 000e 2B80     		strh	r3, [r5]
+  61:APP/src/drv8301.c **** 	// Do blocking write
+  62:APP/src/drv8301.c **** 	tx_buf_ = build_ctrl_word(DRV8301_CtrlMode_Write, regName, data);
+ 280              		.loc 1 62 2 is_stmt 1 view .LVU63
+ 281              		.loc 1 62 10 is_stmt 0 discriminator 1 view .LVU64
+ 282 0010 4905     		lsls	r1, r1, #21
+ 283              	.LVL31:
+ 284              		.loc 1 62 10 discriminator 1 view .LVU65
+ 285 0012 490D     		lsrs	r1, r1, #21
+ 286 0014 0843     		orrs	r0, r1
+ 287              	.LVL32:
+ 288              		.loc 1 62 10 discriminator 1 view .LVU66
+ 289 0016 2080     		strh	r0, [r4]
+  63:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_L;
+ 290              		.loc 1 63 2 is_stmt 1 view .LVU67
+ 291 0018 9020     		movs	r0, #144
+ 292 001a 0022     		movs	r2, #0
+ 293 001c 0821     		movs	r1, #8
+ 294 001e C005     		lsls	r0, r0, #23
+ 295 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 296              	.LVL33:
+  64:APP/src/drv8301.c **** 	delay_us(1);
+ 297              		.loc 1 64 2 view .LVU68
+ 298 0024 0120     		movs	r0, #1
+ 299 0026 FFF7FEFF 		bl	delay_us
+ 300              	.LVL34:
+  65:APP/src/drv8301.c **** 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
+ 301              		.loc 1 65 2 view .LVU69
+ 302              		.loc 1 65 8 is_stmt 0 view .LVU70
+ 303 002a 1048     		ldr	r0, .L14
+ 304 002c FA23     		movs	r3, #250
+ 305 002e 9B00     		lsls	r3, r3, #2
+ 306 0030 0093     		str	r3, [sp]
+ 307 0032 0123     		movs	r3, #1
+ 308 0034 2A00     		movs	r2, r5
+ 309 0036 2100     		movs	r1, r4
+ 310 0038 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 311              	.LVL35:
+ 312              		.loc 1 65 6 discriminator 1 view .LVU71
+ 313 003c 04B2     		sxth	r4, r0
+ 314              	.LVL36:
+  66:APP/src/drv8301.c **** 	if (ret != HAL_OK)
+ 315              		.loc 1 66 2 is_stmt 1 view .LVU72
+ 316              		.loc 1 66 5 is_stmt 0 view .LVU73
+ 317 003e 002C     		cmp	r4, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 8
+
+
+ 318 0040 0BD1     		bne	.L13
+  67:APP/src/drv8301.c **** 	{
+  68:APP/src/drv8301.c **** 		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
+  69:APP/src/drv8301.c **** 		return -1;
+  70:APP/src/drv8301.c **** 	}
+  71:APP/src/drv8301.c **** 	delay_us(1);
+ 319              		.loc 1 71 2 is_stmt 1 view .LVU74
+ 320 0042 0120     		movs	r0, #1
+ 321 0044 FFF7FEFF 		bl	delay_us
+ 322              	.LVL37:
+  72:APP/src/drv8301.c **** 	DRV8301_SPI_M1_CS_H;
+ 323              		.loc 1 72 2 view .LVU75
+ 324 0048 9020     		movs	r0, #144
+ 325 004a 0122     		movs	r2, #1
+ 326 004c 0821     		movs	r1, #8
+ 327 004e C005     		lsls	r0, r0, #23
+ 328 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 329              	.LVL38:
+  73:APP/src/drv8301.c **** 	
+  74:APP/src/drv8301.c **** 
+  75:APP/src/drv8301.c **** 	return 0;
+ 330              		.loc 1 75 2 view .LVU76
+ 331              	.L12:
+  76:APP/src/drv8301.c **** }
+ 332              		.loc 1 76 1 is_stmt 0 view .LVU77
+ 333 0054 2000     		movs	r0, r4
+ 334 0056 05B0     		add	sp, sp, #20
+ 335              		@ sp needed
+ 336 0058 30BD     		pop	{r4, r5, pc}
+ 337              	.LVL39:
+ 338              	.L13:
+  68:APP/src/drv8301.c **** 		return -1;
+ 339              		.loc 1 68 3 is_stmt 1 view .LVU78
+ 340 005a 054B     		ldr	r3, .L14+4
+ 341 005c 0100     		movs	r1, r0
+ 342 005e 1800     		movs	r0, r3
+ 343 0060 FFF7FEFF 		bl	printf
+ 344              	.LVL40:
+  69:APP/src/drv8301.c **** 	}
+ 345              		.loc 1 69 3 view .LVU79
+  69:APP/src/drv8301.c **** 	}
+ 346              		.loc 1 69 10 is_stmt 0 view .LVU80
+ 347 0064 0124     		movs	r4, #1
+ 348              	.LVL41:
+  69:APP/src/drv8301.c **** 	}
+ 349              		.loc 1 69 10 view .LVU81
+ 350 0066 6442     		rsbs	r4, r4, #0
+ 351 0068 F4E7     		b	.L12
+ 352              	.L15:
+ 353 006a C046     		.align	2
+ 354              	.L14:
+ 355 006c 00000000 		.word	hspi1
+ 356 0070 00000000 		.word	.LC2
+ 357              		.cfi_endproc
+ 358              	.LFE45:
+ 360              		.section	.text.DRV8301_Config,"ax",%progbits
+ 361              		.align	1
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 9
+
+
+ 362              		.global	DRV8301_Config
+ 363              		.syntax unified
+ 364              		.code	16
+ 365              		.thumb_func
+ 367              	DRV8301_Config:
+ 368              	.LVL42:
+ 369              	.LFB46:
+  77:APP/src/drv8301.c **** 
+  78:APP/src/drv8301.c **** bool DRV8301_Config(RegisterFile* pRegs, float requested_gain, float* actual_gain)
+  79:APP/src/drv8301.c **** {
+ 370              		.loc 1 79 1 is_stmt 1 view -0
+ 371              		.cfi_startproc
+ 372              		@ args = 0, pretend = 0, frame = 24
+ 373              		@ frame_needed = 0, uses_anonymous_args = 0
+ 374              		.loc 1 79 1 is_stmt 0 view .LVU83
+ 375 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 376              		.cfi_def_cfa_offset 20
+ 377              		.cfi_offset 4, -20
+ 378              		.cfi_offset 5, -16
+ 379              		.cfi_offset 6, -12
+ 380              		.cfi_offset 7, -8
+ 381              		.cfi_offset 14, -4
+ 382 0002 87B0     		sub	sp, sp, #28
+ 383              		.cfi_def_cfa_offset 48
+ 384 0004 0500     		movs	r5, r0
+ 385 0006 0E1C     		adds	r6, r1, #0
+ 386 0008 1700     		movs	r7, r2
+  80:APP/src/drv8301.c ****     // Calculate gain setting: Snap down to have equal or larger range as
+  81:APP/src/drv8301.c ****     // requested or largest possible range otherwise
+  82:APP/src/drv8301.c **** 
+  83:APP/src/drv8301.c ****     // for reference:
+  84:APP/src/drv8301.c ****     // 20V/V on 500uOhm gives a range of +/- 150A
+  85:APP/src/drv8301.c ****     // 40V/V on 500uOhm gives a range of +/- 75A
+  86:APP/src/drv8301.c ****     // 20V/V on 666uOhm gives a range of +/- 110A
+  87:APP/src/drv8301.c ****     // 40V/V on 666uOhm gives a range of +/- 55A
+  88:APP/src/drv8301.c **** 
+  89:APP/src/drv8301.c ****     uint16_t gain_setting = 3;
+ 387              		.loc 1 89 5 is_stmt 1 view .LVU84
+ 388              	.LVL43:
+  90:APP/src/drv8301.c ****     float gain_choices[] = {10.0f, 20.0f, 40.0f, 80.0f};
+ 389              		.loc 1 90 5 view .LVU85
+ 390              		.loc 1 90 11 is_stmt 0 view .LVU86
+ 391 000a 02AA     		add	r2, sp, #8
+ 392              	.LVL44:
+ 393              		.loc 1 90 11 view .LVU87
+ 394 000c 194B     		ldr	r3, .L23
+ 395 000e 13CB     		ldmia	r3!, {r0, r1, r4}
+ 396 0010 13C2     		stmia	r2!, {r0, r1, r4}
+ 397              	.LVL45:
+ 398              		.loc 1 90 11 view .LVU88
+ 399 0012 1B68     		ldr	r3, [r3]
+ 400 0014 1360     		str	r3, [r2]
+  91:APP/src/drv8301.c ****     while (gain_setting && (gain_choices[gain_setting] > requested_gain)) {
+ 401              		.loc 1 91 5 is_stmt 1 view .LVU89
+  89:APP/src/drv8301.c ****     float gain_choices[] = {10.0f, 20.0f, 40.0f, 80.0f};
+ 402              		.loc 1 89 14 is_stmt 0 view .LVU90
+ 403 0016 0324     		movs	r4, #3
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 10
+
+
+ 404              		.loc 1 91 11 view .LVU91
+ 405 0018 01E0     		b	.L17
+ 406              	.LVL46:
+ 407              	.L19:
+  92:APP/src/drv8301.c ****         gain_setting--;
+ 408              		.loc 1 92 9 is_stmt 1 view .LVU92
+ 409              		.loc 1 92 21 is_stmt 0 view .LVU93
+ 410 001a 013C     		subs	r4, r4, #1
+ 411              	.LVL47:
+ 412              		.loc 1 92 21 view .LVU94
+ 413 001c A4B2     		uxth	r4, r4
+ 414              	.LVL48:
+ 415              	.L17:
+  91:APP/src/drv8301.c ****     while (gain_setting && (gain_choices[gain_setting] > requested_gain)) {
+ 416              		.loc 1 91 25 is_stmt 1 view .LVU95
+ 417 001e 002C     		cmp	r4, #0
+ 418 0020 07D0     		beq	.L18
+  91:APP/src/drv8301.c ****     while (gain_setting && (gain_choices[gain_setting] > requested_gain)) {
+ 419              		.loc 1 91 41 is_stmt 0 discriminator 1 view .LVU96
+ 420 0022 A300     		lsls	r3, r4, #2
+ 421 0024 02AA     		add	r2, sp, #8
+ 422 0026 9858     		ldr	r0, [r3, r2]
+  91:APP/src/drv8301.c ****     while (gain_setting && (gain_choices[gain_setting] > requested_gain)) {
+ 423              		.loc 1 91 25 discriminator 1 view .LVU97
+ 424 0028 311C     		adds	r1, r6, #0
+ 425 002a FFF7FEFF 		bl	__aeabi_fcmpgt
+ 426              	.LVL49:
+ 427 002e 0028     		cmp	r0, #0
+ 428 0030 F3D1     		bne	.L19
+ 429              	.L18:
+  93:APP/src/drv8301.c ****     }
+  94:APP/src/drv8301.c **** 
+  95:APP/src/drv8301.c ****     if (actual_gain) {
+ 430              		.loc 1 95 5 is_stmt 1 view .LVU98
+ 431              		.loc 1 95 8 is_stmt 0 view .LVU99
+ 432 0032 002F     		cmp	r7, #0
+ 433 0034 03D0     		beq	.L20
+  96:APP/src/drv8301.c ****         *actual_gain = gain_choices[gain_setting];
+ 434              		.loc 1 96 9 is_stmt 1 view .LVU100
+ 435              		.loc 1 96 36 is_stmt 0 view .LVU101
+ 436 0036 A300     		lsls	r3, r4, #2
+ 437 0038 02AA     		add	r2, sp, #8
+ 438 003a 9B58     		ldr	r3, [r3, r2]
+ 439              		.loc 1 96 22 view .LVU102
+ 440 003c 3B60     		str	r3, [r7]
+ 441              	.L20:
+  97:APP/src/drv8301.c ****     }
+  98:APP/src/drv8301.c **** 
+  99:APP/src/drv8301.c ****     RegisterFile new_config;
+ 442              		.loc 1 99 5 is_stmt 1 view .LVU103
+ 100:APP/src/drv8301.c **** 
+ 101:APP/src/drv8301.c ****     new_config.control_register_1 =
+ 443              		.loc 1 101 5 view .LVU104
+ 444              		.loc 1 101 35 is_stmt 0 view .LVU105
+ 445 003e 01AA     		add	r2, sp, #4
+ 446 0040 AA23     		movs	r3, #170
+ 447 0042 DB00     		lsls	r3, r3, #3
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 11
+
+
+ 448 0044 1380     		strh	r3, [r2]
+ 102:APP/src/drv8301.c ****           (21 << 6) // Overcurrent set to approximately 150A at 100degC. This may need tweaking.
+ 103:APP/src/drv8301.c ****         | (0b01 << 4) // OCP_MODE: latch shut down
+ 104:APP/src/drv8301.c ****         | (0b0 << 3) // 6x PWM mode
+ 105:APP/src/drv8301.c ****         | (0b0 << 2) // don't reset latched faults
+ 106:APP/src/drv8301.c ****         | (0b00 << 0); // gate-drive peak current: 1.7A
+ 107:APP/src/drv8301.c **** 
+ 108:APP/src/drv8301.c ****     new_config.control_register_2 =
+ 449              		.loc 1 108 5 is_stmt 1 view .LVU106
+ 109:APP/src/drv8301.c ****           (0b0 << 6) // OC_TOFF: cycle by cycle
+ 110:APP/src/drv8301.c ****         | (0b00 << 4) // calibration off (normal operation)
+ 111:APP/src/drv8301.c ****         | (gain_setting << 2) // select gain
+ 112:APP/src/drv8301.c ****         | (0b00 << 0); // report both over temperature and over current on nOCTW pin
+ 450              		.loc 1 112 9 is_stmt 0 view .LVU107
+ 451 0046 A400     		lsls	r4, r4, #2
+ 452              	.LVL50:
+ 453              		.loc 1 112 9 view .LVU108
+ 454 0048 A4B2     		uxth	r4, r4
+ 108:APP/src/drv8301.c ****           (0b0 << 6) // OC_TOFF: cycle by cycle
+ 455              		.loc 1 108 35 view .LVU109
+ 456 004a 5480     		strh	r4, [r2, #2]
+ 113:APP/src/drv8301.c **** 
+ 114:APP/src/drv8301.c ****     int16_t regs_equal = (pRegs->control_register_1 == new_config.control_register_1)
+ 457              		.loc 1 114 5 is_stmt 1 view .LVU110
+ 458              		.loc 1 114 32 is_stmt 0 view .LVU111
+ 459 004c 2A88     		ldrh	r2, [r5]
+ 115:APP/src/drv8301.c **** 											&& (pRegs->control_register_2 == new_config.control_register_2);
+ 460              		.loc 1 115 12 view .LVU112
+ 461 004e 9A42     		cmp	r2, r3
+ 462 0050 02D1     		bne	.L21
+ 463              		.loc 1 115 21 discriminator 1 view .LVU113
+ 464 0052 6B88     		ldrh	r3, [r5, #2]
+ 465              		.loc 1 115 12 discriminator 1 view .LVU114
+ 466 0054 9C42     		cmp	r4, r3
+ 467 0056 09D0     		beq	.L22
+ 468              	.L21:
+ 469              	.LVL51:
+ 116:APP/src/drv8301.c **** 
+ 117:APP/src/drv8301.c ****     if (!regs_equal)
+ 470              		.loc 1 117 5 is_stmt 1 view .LVU115
+ 118:APP/src/drv8301.c **** 		{
+ 119:APP/src/drv8301.c **** 				memcpy((void*)pRegs, (const void*)&new_config, (uint32_t)sizeof(new_config));
+ 471              		.loc 1 119 5 view .LVU116
+ 472 0058 0422     		movs	r2, #4
+ 473 005a 01A9     		add	r1, sp, #4
+ 474 005c 2800     		movs	r0, r5
+ 475 005e FFF7FEFF 		bl	memcpy
+ 476              	.LVL52:
+ 120:APP/src/drv8301.c ****         DRV8301_GATE_ENABLE;
+ 477              		.loc 1 120 9 view .LVU117
+ 478 0062 0122     		movs	r2, #1
+ 479 0064 1021     		movs	r1, #16
+ 480 0066 0448     		ldr	r0, .L23+4
+ 481 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 482              	.LVL53:
+ 483              	.L22:
+ 121:APP/src/drv8301.c ****     }
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 12
+
+
+ 122:APP/src/drv8301.c **** 		
+ 123:APP/src/drv8301.c **** 		//printf("DRV8301_Config success\r\n");
+ 124:APP/src/drv8301.c **** 
+ 125:APP/src/drv8301.c ****     return 0;
+ 484              		.loc 1 125 5 view .LVU118
+ 126:APP/src/drv8301.c **** }
+ 485              		.loc 1 126 1 is_stmt 0 view .LVU119
+ 486 006c 0020     		movs	r0, #0
+ 487 006e 07B0     		add	sp, sp, #28
+ 488              		@ sp needed
+ 489              	.LVL54:
+ 490              	.LVL55:
+ 491              	.LVL56:
+ 492              		.loc 1 126 1 view .LVU120
+ 493 0070 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 494              	.L24:
+ 495 0072 C046     		.align	2
+ 496              	.L23:
+ 497 0074 00000000 		.word	.LANCHOR0
+ 498 0078 00040048 		.word	1207960576
+ 499              		.cfi_endproc
+ 500              	.LFE46:
+ 502              		.section	.rodata.DRV8301_Init.str1.4,"aMS",%progbits,1
+ 503              		.align	2
+ 504              	.LC7:
+ 505 0000 73657420 		.ascii	"set kRegNameControl1 Error,ret:%d actual:0x%X expec"
+ 505      6B526567 
+ 505      4E616D65 
+ 505      436F6E74 
+ 505      726F6C31 
+ 506 0033 743A3078 		.ascii	"t:0x%X\015\012\000"
+ 506      25580D0A 
+ 506      00
+ 507              		.align	2
+ 508              	.LC9:
+ 509 003c 73657420 		.ascii	"set kRegNameControl2 Error,ret:%d actual:0x%X expec"
+ 509      6B526567 
+ 509      4E616D65 
+ 509      436F6E74 
+ 509      726F6C32 
+ 510 006f 743A3078 		.ascii	"t:0x%X\015\012\000"
+ 510      25580D0A 
+ 510      00
+ 511              		.align	2
+ 512              	.LC11:
+ 513 0078 44525638 		.ascii	"DRV8301_Init success\015\000"
+ 513      3330315F 
+ 513      496E6974 
+ 513      20737563 
+ 513      63657373 
+ 514              		.section	.text.DRV8301_Init,"ax",%progbits
+ 515              		.align	1
+ 516              		.global	DRV8301_Init
+ 517              		.syntax unified
+ 518              		.code	16
+ 519              		.thumb_func
+ 521              	DRV8301_Init:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 13
+
+
+ 522              	.LVL57:
+ 523              	.LFB47:
+ 127:APP/src/drv8301.c **** 
+ 128:APP/src/drv8301.c **** int16_t DRV8301_Init(RegisterFile* pRegs)
+ 129:APP/src/drv8301.c **** {
+ 524              		.loc 1 129 1 is_stmt 1 view -0
+ 525              		.cfi_startproc
+ 526              		@ args = 0, pretend = 0, frame = 8
+ 527              		@ frame_needed = 0, uses_anonymous_args = 0
+ 528              		.loc 1 129 1 is_stmt 0 view .LVU122
+ 529 0000 70B5     		push	{r4, r5, r6, lr}
+ 530              		.cfi_def_cfa_offset 16
+ 531              		.cfi_offset 4, -16
+ 532              		.cfi_offset 5, -12
+ 533              		.cfi_offset 6, -8
+ 534              		.cfi_offset 14, -4
+ 535 0002 82B0     		sub	sp, sp, #8
+ 536              		.cfi_def_cfa_offset 24
+ 537 0004 0500     		movs	r5, r0
+ 130:APP/src/drv8301.c **** 	int16_t ret = 0;
+ 538              		.loc 1 130 2 is_stmt 1 view .LVU123
+ 539              	.LVL58:
+ 131:APP/src/drv8301.c **** 	uint16_t val;
+ 540              		.loc 1 131 2 view .LVU124
+ 132:APP/src/drv8301.c **** 	
+ 133:APP/src/drv8301.c **** 
+ 134:APP/src/drv8301.c **** 	DRV8301_GATE_DISABLE;
+ 541              		.loc 1 134 2 view .LVU125
+ 542 0006 384C     		ldr	r4, .L32
+ 543 0008 0022     		movs	r2, #0
+ 544 000a 1021     		movs	r1, #16
+ 545 000c 2000     		movs	r0, r4
+ 546              	.LVL59:
+ 547              		.loc 1 134 2 is_stmt 0 view .LVU126
+ 548 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 549              	.LVL60:
+ 135:APP/src/drv8301.c **** 	delay_us(100*1000);
+ 550              		.loc 1 135 2 is_stmt 1 view .LVU127
+ 551 0012 3648     		ldr	r0, .L32+4
+ 552 0014 FFF7FEFF 		bl	delay_us
+ 553              	.LVL61:
+ 136:APP/src/drv8301.c **** 	DRV8301_GATE_ENABLE;
+ 554              		.loc 1 136 2 view .LVU128
+ 555 0018 0122     		movs	r2, #1
+ 556 001a 1021     		movs	r1, #16
+ 557 001c 2000     		movs	r0, r4
+ 558 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 559              	.LVL62:
+ 137:APP/src/drv8301.c **** 	HAL_Delay(10);
+ 560              		.loc 1 137 2 view .LVU129
+ 561 0022 0A20     		movs	r0, #10
+ 562 0024 FFF7FEFF 		bl	HAL_Delay
+ 563              	.LVL63:
+ 138:APP/src/drv8301.c **** 
+ 139:APP/src/drv8301.c **** 	int16_t wrote_regs =  DRV8301_WriteReg(kRegNameControl1, pRegs->control_register_1)
+ 564              		.loc 1 139 2 view .LVU130
+ 565              		.loc 1 139 24 is_stmt 0 view .LVU131
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 14
+
+
+ 566 0028 2988     		ldrh	r1, [r5]
+ 567 002a 8026     		movs	r6, #128
+ 568 002c 7601     		lsls	r6, r6, #5
+ 569 002e 3000     		movs	r0, r6
+ 570 0030 FFF7FEFF 		bl	DRV8301_WriteReg
+ 571              	.LVL64:
+ 572              		.loc 1 139 24 discriminator 1 view .LVU132
+ 573 0034 84B2     		uxth	r4, r0
+ 140:APP/src/drv8301.c **** 											+ DRV8301_WriteReg(kRegNameControl1, pRegs->control_register_1)
+ 574              		.loc 1 140 14 view .LVU133
+ 575 0036 2988     		ldrh	r1, [r5]
+ 576 0038 3000     		movs	r0, r6
+ 577 003a FFF7FEFF 		bl	DRV8301_WriteReg
+ 578              	.LVL65:
+ 579              		.loc 1 140 14 discriminator 1 view .LVU134
+ 580 003e 80B2     		uxth	r0, r0
+ 581              		.loc 1 140 12 discriminator 1 view .LVU135
+ 582 0040 2418     		adds	r4, r4, r0
+ 583 0042 A4B2     		uxth	r4, r4
+ 141:APP/src/drv8301.c **** 											+ DRV8301_WriteReg(kRegNameControl1, pRegs->control_register_1)
+ 584              		.loc 1 141 14 view .LVU136
+ 585 0044 2988     		ldrh	r1, [r5]
+ 586 0046 3000     		movs	r0, r6
+ 587 0048 FFF7FEFF 		bl	DRV8301_WriteReg
+ 588              	.LVL66:
+ 589              		.loc 1 141 14 discriminator 1 view .LVU137
+ 590 004c 80B2     		uxth	r0, r0
+ 591              		.loc 1 141 12 discriminator 1 view .LVU138
+ 592 004e 2418     		adds	r4, r4, r0
+ 593 0050 A4B2     		uxth	r4, r4
+ 142:APP/src/drv8301.c **** 											+ DRV8301_WriteReg(kRegNameControl1, pRegs->control_register_1)
+ 594              		.loc 1 142 14 view .LVU139
+ 595 0052 2988     		ldrh	r1, [r5]
+ 596 0054 3000     		movs	r0, r6
+ 597 0056 FFF7FEFF 		bl	DRV8301_WriteReg
+ 598              	.LVL67:
+ 599              		.loc 1 142 14 discriminator 1 view .LVU140
+ 600 005a 80B2     		uxth	r0, r0
+ 601              		.loc 1 142 12 discriminator 1 view .LVU141
+ 602 005c 2418     		adds	r4, r4, r0
+ 603 005e A4B2     		uxth	r4, r4
+ 143:APP/src/drv8301.c **** 											+ DRV8301_WriteReg(kRegNameControl1, pRegs->control_register_1)
+ 604              		.loc 1 143 14 view .LVU142
+ 605 0060 2988     		ldrh	r1, [r5]
+ 606 0062 3000     		movs	r0, r6
+ 607 0064 FFF7FEFF 		bl	DRV8301_WriteReg
+ 608              	.LVL68:
+ 609              		.loc 1 143 14 discriminator 1 view .LVU143
+ 610 0068 80B2     		uxth	r0, r0
+ 611              		.loc 1 143 12 discriminator 1 view .LVU144
+ 612 006a 2418     		adds	r4, r4, r0
+ 613 006c A4B2     		uxth	r4, r4
+ 144:APP/src/drv8301.c **** 											+ DRV8301_WriteReg(kRegNameControl2, pRegs->control_register_2);
+ 614              		.loc 1 144 14 view .LVU145
+ 615 006e 6988     		ldrh	r1, [r5, #2]
+ 616 0070 C020     		movs	r0, #192
+ 617 0072 4001     		lsls	r0, r0, #5
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 15
+
+
+ 618 0074 FFF7FEFF 		bl	DRV8301_WriteReg
+ 619              	.LVL69:
+ 620              		.loc 1 144 14 discriminator 1 view .LVU146
+ 621 0078 80B2     		uxth	r0, r0
+ 622              		.loc 1 144 12 discriminator 1 view .LVU147
+ 623 007a 2418     		adds	r4, r4, r0
+ 624 007c A4B2     		uxth	r4, r4
+ 625              	.LVL70:
+ 145:APP/src/drv8301.c **** 	if(wrote_regs != 0)
+ 626              		.loc 1 145 2 is_stmt 1 view .LVU148
+ 627              		.loc 1 145 4 is_stmt 0 view .LVU149
+ 628 007e 002C     		cmp	r4, #0
+ 629 0080 2ED1     		bne	.L29
+ 146:APP/src/drv8301.c **** 	{
+ 147:APP/src/drv8301.c **** 			return -1;
+ 148:APP/src/drv8301.c **** 	}
+ 149:APP/src/drv8301.c **** 	
+ 150:APP/src/drv8301.c **** 	delay_us(100);
+ 630              		.loc 1 150 2 is_stmt 1 view .LVU150
+ 631 0082 6420     		movs	r0, #100
+ 632 0084 FFF7FEFF 		bl	delay_us
+ 633              	.LVL71:
+ 151:APP/src/drv8301.c **** 
+ 152:APP/src/drv8301.c **** 	ret = DRV8301_ReadReg(kRegNameControl1, &val);
+ 634              		.loc 1 152 2 view .LVU151
+ 635              		.loc 1 152 8 is_stmt 0 view .LVU152
+ 636 0088 6B46     		mov	r3, sp
+ 637 008a 9C1D     		adds	r4, r3, #6
+ 638              	.LVL72:
+ 639              		.loc 1 152 8 view .LVU153
+ 640 008c 8020     		movs	r0, #128
+ 641 008e 2100     		movs	r1, r4
+ 642 0090 4001     		lsls	r0, r0, #5
+ 643 0092 FFF7FEFF 		bl	DRV8301_ReadReg
+ 644              	.LVL73:
+ 153:APP/src/drv8301.c **** 	if(val != pRegs->control_register_1)
+ 645              		.loc 1 153 2 is_stmt 1 view .LVU154
+ 646              		.loc 1 153 17 is_stmt 0 view .LVU155
+ 647 0096 2B88     		ldrh	r3, [r5]
+ 648              		.loc 1 153 9 view .LVU156
+ 649 0098 2288     		ldrh	r2, [r4]
+ 650              		.loc 1 153 4 view .LVU157
+ 651 009a 9342     		cmp	r3, r2
+ 652 009c 10D1     		bne	.L30
+ 154:APP/src/drv8301.c **** 	{
+ 155:APP/src/drv8301.c **** 		printf("set kRegNameControl1 Error,ret:%d actual:0x%X expect:0x%X\r\n",ret, val, pRegs->control_r
+ 156:APP/src/drv8301.c **** 		return -2;
+ 157:APP/src/drv8301.c **** 	}
+ 158:APP/src/drv8301.c **** 	
+ 159:APP/src/drv8301.c **** 	ret = DRV8301_ReadReg(kRegNameControl2, &val);
+ 653              		.loc 1 159 2 is_stmt 1 view .LVU158
+ 654              		.loc 1 159 8 is_stmt 0 view .LVU159
+ 655 009e 6B46     		mov	r3, sp
+ 656 00a0 9C1D     		adds	r4, r3, #6
+ 657 00a2 C020     		movs	r0, #192
+ 658              	.LVL74:
+ 659              		.loc 1 159 8 view .LVU160
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 16
+
+
+ 660 00a4 2100     		movs	r1, r4
+ 661 00a6 4001     		lsls	r0, r0, #5
+ 662 00a8 FFF7FEFF 		bl	DRV8301_ReadReg
+ 663              	.LVL75:
+ 160:APP/src/drv8301.c **** 	if(val != pRegs->control_register_2)
+ 664              		.loc 1 160 2 is_stmt 1 view .LVU161
+ 665              		.loc 1 160 17 is_stmt 0 view .LVU162
+ 666 00ac 6B88     		ldrh	r3, [r5, #2]
+ 667              		.loc 1 160 9 view .LVU163
+ 668 00ae 2288     		ldrh	r2, [r4]
+ 669              		.loc 1 160 4 view .LVU164
+ 670 00b0 9342     		cmp	r3, r2
+ 671 00b2 0DD1     		bne	.L31
+ 161:APP/src/drv8301.c **** 	{
+ 162:APP/src/drv8301.c **** 		printf("set kRegNameControl2 Error,ret:%d actual:0x%X expect:0x%X\r\n",ret, val, pRegs->control_r
+ 163:APP/src/drv8301.c **** 		return -3;
+ 164:APP/src/drv8301.c **** 	}
+ 165:APP/src/drv8301.c **** 	
+ 166:APP/src/drv8301.c **** 	printf("DRV8301_Init success\r\n");
+ 672              		.loc 1 166 2 is_stmt 1 view .LVU165
+ 673 00b4 0E48     		ldr	r0, .L32+8
+ 674              	.LVL76:
+ 675              		.loc 1 166 2 is_stmt 0 view .LVU166
+ 676 00b6 FFF7FEFF 		bl	puts
+ 677              	.LVL77:
+ 167:APP/src/drv8301.c **** 
+ 168:APP/src/drv8301.c **** 	return 0;
+ 678              		.loc 1 168 2 is_stmt 1 view .LVU167
+ 679              		.loc 1 168 9 is_stmt 0 view .LVU168
+ 680 00ba 0020     		movs	r0, #0
+ 681              	.LVL78:
+ 682              	.L26:
+ 169:APP/src/drv8301.c **** }
+ 683              		.loc 1 169 1 view .LVU169
+ 684 00bc 02B0     		add	sp, sp, #8
+ 685              		@ sp needed
+ 686              	.LVL79:
+ 687              		.loc 1 169 1 view .LVU170
+ 688 00be 70BD     		pop	{r4, r5, r6, pc}
+ 689              	.LVL80:
+ 690              	.L30:
+ 155:APP/src/drv8301.c **** 		return -2;
+ 691              		.loc 1 155 3 is_stmt 1 view .LVU171
+ 692 00c0 0C4C     		ldr	r4, .L32+12
+ 693 00c2 0100     		movs	r1, r0
+ 694 00c4 2000     		movs	r0, r4
+ 695              	.LVL81:
+ 155:APP/src/drv8301.c **** 		return -2;
+ 696              		.loc 1 155 3 is_stmt 0 view .LVU172
+ 697 00c6 FFF7FEFF 		bl	printf
+ 698              	.LVL82:
+ 156:APP/src/drv8301.c **** 	}
+ 699              		.loc 1 156 3 is_stmt 1 view .LVU173
+ 156:APP/src/drv8301.c **** 	}
+ 700              		.loc 1 156 10 is_stmt 0 view .LVU174
+ 701 00ca 0220     		movs	r0, #2
+ 702 00cc 4042     		rsbs	r0, r0, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 17
+
+
+ 703 00ce F5E7     		b	.L26
+ 704              	.LVL83:
+ 705              	.L31:
+ 162:APP/src/drv8301.c **** 		return -3;
+ 706              		.loc 1 162 3 is_stmt 1 view .LVU175
+ 707 00d0 094C     		ldr	r4, .L32+16
+ 708 00d2 0100     		movs	r1, r0
+ 709 00d4 2000     		movs	r0, r4
+ 710              	.LVL84:
+ 162:APP/src/drv8301.c **** 		return -3;
+ 711              		.loc 1 162 3 is_stmt 0 view .LVU176
+ 712 00d6 FFF7FEFF 		bl	printf
+ 713              	.LVL85:
+ 163:APP/src/drv8301.c **** 	}
+ 714              		.loc 1 163 3 is_stmt 1 view .LVU177
+ 163:APP/src/drv8301.c **** 	}
+ 715              		.loc 1 163 10 is_stmt 0 view .LVU178
+ 716 00da 0320     		movs	r0, #3
+ 717 00dc 4042     		rsbs	r0, r0, #0
+ 718 00de EDE7     		b	.L26
+ 719              	.LVL86:
+ 720              	.L29:
+ 147:APP/src/drv8301.c **** 	}
+ 721              		.loc 1 147 11 view .LVU179
+ 722 00e0 0120     		movs	r0, #1
+ 723 00e2 4042     		rsbs	r0, r0, #0
+ 724 00e4 EAE7     		b	.L26
+ 725              	.L33:
+ 726 00e6 C046     		.align	2
+ 727              	.L32:
+ 728 00e8 00040048 		.word	1207960576
+ 729 00ec A0860100 		.word	100000
+ 730 00f0 78000000 		.word	.LC11
+ 731 00f4 00000000 		.word	.LC7
+ 732 00f8 3C000000 		.word	.LC9
+ 733              		.cfi_endproc
+ 734              	.LFE47:
+ 736              		.section	.rodata.DRV8301_SPI_test.str1.4,"aMS",%progbits,1
+ 737              		.align	2
+ 738              	.LC13:
+ 739 0000 44525638 		.ascii	"DRV8301_Config Err:%d\015\012\000"
+ 739      3330315F 
+ 739      436F6E66 
+ 739      69672045 
+ 739      72723A25 
+ 740              		.align	2
+ 741              	.LC15:
+ 742 0018 44525638 		.ascii	"DRV8301_Init Err:%d\015\012\000"
+ 742      3330315F 
+ 742      496E6974 
+ 742      20457272 
+ 742      3A25640D 
+ 743              		.section	.text.DRV8301_SPI_test,"ax",%progbits
+ 744              		.align	1
+ 745              		.global	DRV8301_SPI_test
+ 746              		.syntax unified
+ 747              		.code	16
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 18
+
+
+ 748              		.thumb_func
+ 750              	DRV8301_SPI_test:
+ 751              	.LFB48:
+ 170:APP/src/drv8301.c **** 
+ 171:APP/src/drv8301.c **** //SPI参数配置测试
+ 172:APP/src/drv8301.c **** int16_t DRV8301_SPI_test(void)
+ 173:APP/src/drv8301.c **** {
+ 752              		.loc 1 173 1 is_stmt 1 view -0
+ 753              		.cfi_startproc
+ 754              		@ args = 0, pretend = 0, frame = 8
+ 755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 756 0000 00B5     		push	{lr}
+ 757              		.cfi_def_cfa_offset 4
+ 758              		.cfi_offset 14, -4
+ 759 0002 83B0     		sub	sp, sp, #12
+ 760              		.cfi_def_cfa_offset 16
+ 174:APP/src/drv8301.c **** 	int16_t ret = 0;
+ 761              		.loc 1 174 2 view .LVU181
+ 762              	.LVL87:
+ 175:APP/src/drv8301.c **** 	RegisterFile regs_;
+ 763              		.loc 1 175 2 view .LVU182
+ 176:APP/src/drv8301.c **** 	float actual_gain;
+ 764              		.loc 1 176 2 view .LVU183
+ 177:APP/src/drv8301.c **** 	ret = DRV8301_Config(&regs_, 40.0f, &actual_gain);
+ 765              		.loc 1 177 2 view .LVU184
+ 766              		.loc 1 177 8 is_stmt 0 view .LVU185
+ 767 0004 6A46     		mov	r2, sp
+ 768 0006 0B49     		ldr	r1, .L39
+ 769 0008 01A8     		add	r0, sp, #4
+ 770 000a FFF7FEFF 		bl	DRV8301_Config
+ 771              	.LVL88:
+ 772 000e 011E     		subs	r1, r0, #0
+ 773              	.LVL89:
+ 178:APP/src/drv8301.c **** 	if(ret != 0)
+ 774              		.loc 1 178 2 is_stmt 1 view .LVU186
+ 775              		.loc 1 178 4 is_stmt 0 view .LVU187
+ 776 0010 07D1     		bne	.L37
+ 777              	.LVL90:
+ 778              	.L35:
+ 179:APP/src/drv8301.c **** 	{
+ 180:APP/src/drv8301.c **** 		printf("DRV8301_Config Err:%d\r\n",ret);
+ 181:APP/src/drv8301.c **** 	}
+ 182:APP/src/drv8301.c **** 	ret = DRV8301_Init(&regs_);
+ 779              		.loc 1 182 2 is_stmt 1 view .LVU188
+ 780              		.loc 1 182 8 is_stmt 0 view .LVU189
+ 781 0012 01A8     		add	r0, sp, #4
+ 782 0014 FFF7FEFF 		bl	DRV8301_Init
+ 783              	.LVL91:
+ 784 0018 011E     		subs	r1, r0, #0
+ 785              	.LVL92:
+ 183:APP/src/drv8301.c **** 	if(ret != 0)
+ 786              		.loc 1 183 2 is_stmt 1 view .LVU190
+ 787              		.loc 1 183 4 is_stmt 0 view .LVU191
+ 788 001a 06D1     		bne	.L38
+ 789              	.LVL93:
+ 790              	.L36:
+ 184:APP/src/drv8301.c **** 	{
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 19
+
+
+ 185:APP/src/drv8301.c **** 		printf("DRV8301_Init Err:%d\r\n",ret);
+ 186:APP/src/drv8301.c **** 	}
+ 187:APP/src/drv8301.c **** 	return 0;
+ 791              		.loc 1 187 2 is_stmt 1 view .LVU192
+ 188:APP/src/drv8301.c **** }
+ 792              		.loc 1 188 1 is_stmt 0 view .LVU193
+ 793 001c 0020     		movs	r0, #0
+ 794 001e 03B0     		add	sp, sp, #12
+ 795              		@ sp needed
+ 796 0020 00BD     		pop	{pc}
+ 797              	.LVL94:
+ 798              	.L37:
+ 180:APP/src/drv8301.c **** 	}
+ 799              		.loc 1 180 3 is_stmt 1 view .LVU194
+ 800 0022 0548     		ldr	r0, .L39+4
+ 801              	.LVL95:
+ 180:APP/src/drv8301.c **** 	}
+ 802              		.loc 1 180 3 is_stmt 0 view .LVU195
+ 803 0024 FFF7FEFF 		bl	printf
+ 804              	.LVL96:
+ 805 0028 F3E7     		b	.L35
+ 806              	.LVL97:
+ 807              	.L38:
+ 185:APP/src/drv8301.c **** 	}
+ 808              		.loc 1 185 3 is_stmt 1 view .LVU196
+ 809 002a 0448     		ldr	r0, .L39+8
+ 810              	.LVL98:
+ 185:APP/src/drv8301.c **** 	}
+ 811              		.loc 1 185 3 is_stmt 0 view .LVU197
+ 812 002c FFF7FEFF 		bl	printf
+ 813              	.LVL99:
+ 814 0030 F4E7     		b	.L36
+ 815              	.L40:
+ 816 0032 C046     		.align	2
+ 817              	.L39:
+ 818 0034 00002042 		.word	1109393408
+ 819 0038 00000000 		.word	.LC13
+ 820 003c 18000000 		.word	.LC15
+ 821              		.cfi_endproc
+ 822              	.LFE48:
+ 824              		.section	.text.DRV8301_DeadTime,"ax",%progbits
+ 825              		.align	1
+ 826              		.global	DRV8301_DeadTime
+ 827              		.syntax unified
+ 828              		.code	16
+ 829              		.thumb_func
+ 831              	DRV8301_DeadTime:
+ 832              	.LFB49:
+ 189:APP/src/drv8301.c **** 
+ 190:APP/src/drv8301.c **** #define DRV8301_AH_H HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_SET)
+ 191:APP/src/drv8301.c **** #define DRV8301_AH_L HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_RESET)
+ 192:APP/src/drv8301.c **** #define DRV8301_AL_H HAL_GPIO_WritePin(GPIOA, AL_Pin, GPIO_PIN_SET)
+ 193:APP/src/drv8301.c **** #define DRV8301_AL_L HAL_GPIO_WritePin(GPIOA, AL_Pin, GPIO_PIN_RESET)
+ 194:APP/src/drv8301.c **** 
+ 195:APP/src/drv8301.c **** #define DRV8301_BH_H HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_SET)
+ 196:APP/src/drv8301.c **** #define DRV8301_BH_L HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_RESET)
+ 197:APP/src/drv8301.c **** #define DRV8301_BL_H HAL_GPIO_WritePin(GPIOB, BL_Pin, GPIO_PIN_SET)
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 20
+
+
+ 198:APP/src/drv8301.c **** #define DRV8301_BL_L HAL_GPIO_WritePin(GPIOB, BL_Pin, GPIO_PIN_RESET)
+ 199:APP/src/drv8301.c **** 
+ 200:APP/src/drv8301.c **** #define DRV8301_CH_H HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_SET)
+ 201:APP/src/drv8301.c **** #define DRV8301_CH_L HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_RESET)
+ 202:APP/src/drv8301.c **** #define DRV8301_CL_H HAL_GPIO_WritePin(GPIOB, CL_Pin, GPIO_PIN_SET)
+ 203:APP/src/drv8301.c **** #define DRV8301_CL_L HAL_GPIO_WritePin(GPIOB, CL_Pin, GPIO_PIN_RESET) 
+ 204:APP/src/drv8301.c **** 
+ 205:APP/src/drv8301.c **** 
+ 206:APP/src/drv8301.c **** // 定义方向和速度变量
+ 207:APP/src/drv8301.c **** static int16_t motor_direction = 1; // 1: 正转, -1: 反转
+ 208:APP/src/drv8301.c **** static uint16_t motor_speed = 2000;  // 转速，单位为毫秒（步之间的延时）
+ 209:APP/src/drv8301.c **** static uint16_t dead_time = 50;     // 死区时间，单位为微秒
+ 210:APP/src/drv8301.c **** 
+ 211:APP/src/drv8301.c **** // 设置死区时间（模拟）
+ 212:APP/src/drv8301.c **** void DRV8301_DeadTime(void) {
+ 833              		.loc 1 212 29 is_stmt 1 view -0
+ 834              		.cfi_startproc
+ 835              		@ args = 0, pretend = 0, frame = 0
+ 836              		@ frame_needed = 0, uses_anonymous_args = 0
+ 837 0000 10B5     		push	{r4, lr}
+ 838              		.cfi_def_cfa_offset 8
+ 839              		.cfi_offset 4, -8
+ 840              		.cfi_offset 14, -4
+ 213:APP/src/drv8301.c **** 		delay_us(dead_time);
+ 841              		.loc 1 213 3 view .LVU199
+ 842 0002 3220     		movs	r0, #50
+ 843 0004 FFF7FEFF 		bl	delay_us
+ 844              	.LVL100:
+ 214:APP/src/drv8301.c **** }
+ 845              		.loc 1 214 1 is_stmt 0 view .LVU200
+ 846              		@ sp needed
+ 847 0008 10BD     		pop	{r4, pc}
+ 848              		.cfi_endproc
+ 849              	.LFE49:
+ 851              		.section	.text.DRV8301_Motor_test,"ax",%progbits
+ 852              		.align	1
+ 853              		.global	DRV8301_Motor_test
+ 854              		.syntax unified
+ 855              		.code	16
+ 856              		.thumb_func
+ 858              	DRV8301_Motor_test:
+ 859              	.LVL101:
+ 860              	.LFB50:
+ 215:APP/src/drv8301.c **** 
+ 216:APP/src/drv8301.c **** // 无刷电机六步换向函数
+ 217:APP/src/drv8301.c **** int16_t DRV8301_Motor_test(int16_t status) {
+ 861              		.loc 1 217 44 is_stmt 1 view -0
+ 862              		.cfi_startproc
+ 863              		@ args = 0, pretend = 0, frame = 0
+ 864              		@ frame_needed = 0, uses_anonymous_args = 0
+ 865              		.loc 1 217 44 is_stmt 0 view .LVU202
+ 866 0000 70B5     		push	{r4, r5, r6, lr}
+ 867              		.cfi_def_cfa_offset 16
+ 868              		.cfi_offset 4, -16
+ 869              		.cfi_offset 5, -12
+ 870              		.cfi_offset 6, -8
+ 871              		.cfi_offset 14, -4
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 21
+
+
+ 872 0002 041E     		subs	r4, r0, #0
+ 218:APP/src/drv8301.c ****     if (status == 0) {
+ 873              		.loc 1 218 5 is_stmt 1 view .LVU203
+ 874              		.loc 1 218 8 is_stmt 0 view .LVU204
+ 875 0004 01D0     		beq	.L55
+ 876              	.LBB10:
+ 219:APP/src/drv8301.c ****         // 停止转动，关闭所有输出
+ 220:APP/src/drv8301.c ****         DRV8301_AH_L;
+ 221:APP/src/drv8301.c ****         DRV8301_AL_L;
+ 222:APP/src/drv8301.c ****         DRV8301_BH_L;
+ 223:APP/src/drv8301.c ****         DRV8301_BL_L;
+ 224:APP/src/drv8301.c ****         DRV8301_CH_L;
+ 225:APP/src/drv8301.c ****         DRV8301_CL_L;
+ 226:APP/src/drv8301.c ****         return 0; // 返回停止状态
+ 227:APP/src/drv8301.c ****     }
+ 228:APP/src/drv8301.c **** 
+ 229:APP/src/drv8301.c ****     // 启动转动
+ 230:APP/src/drv8301.c ****     for (int step = 1; step <= 6; step++) {
+ 877              		.loc 1 230 14 view .LVU205
+ 878 0006 0124     		movs	r4, #1
+ 879 0008 50E0     		b	.L43
+ 880              	.L55:
+ 881              	.LBE10:
+ 220:APP/src/drv8301.c ****         DRV8301_AL_L;
+ 882              		.loc 1 220 9 is_stmt 1 view .LVU206
+ 883 000a 8021     		movs	r1, #128
+ 884 000c 9025     		movs	r5, #144
+ 885 000e ED05     		lsls	r5, r5, #23
+ 886 0010 0022     		movs	r2, #0
+ 887 0012 4900     		lsls	r1, r1, #1
+ 888 0014 2800     		movs	r0, r5
+ 889              	.LVL102:
+ 220:APP/src/drv8301.c ****         DRV8301_AL_L;
+ 890              		.loc 1 220 9 is_stmt 0 view .LVU207
+ 891 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 892              	.LVL103:
+ 221:APP/src/drv8301.c ****         DRV8301_BH_L;
+ 893              		.loc 1 221 9 is_stmt 1 view .LVU208
+ 894 001a 0022     		movs	r2, #0
+ 895 001c 8021     		movs	r1, #128
+ 896 001e 2800     		movs	r0, r5
+ 897 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 898              	.LVL104:
+ 222:APP/src/drv8301.c ****         DRV8301_BL_L;
+ 899              		.loc 1 222 9 view .LVU209
+ 900 0024 8021     		movs	r1, #128
+ 901 0026 0022     		movs	r2, #0
+ 902 0028 8900     		lsls	r1, r1, #2
+ 903 002a 2800     		movs	r0, r5
+ 904 002c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 905              	.LVL105:
+ 223:APP/src/drv8301.c ****         DRV8301_CH_L;
+ 906              		.loc 1 223 9 view .LVU210
+ 907 0030 854E     		ldr	r6, .L57
+ 908 0032 0022     		movs	r2, #0
+ 909 0034 0121     		movs	r1, #1
+ 910 0036 3000     		movs	r0, r6
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 22
+
+
+ 911 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 912              	.LVL106:
+ 224:APP/src/drv8301.c ****         DRV8301_CL_L;
+ 913              		.loc 1 224 9 view .LVU211
+ 914 003c 8021     		movs	r1, #128
+ 915 003e 0022     		movs	r2, #0
+ 916 0040 C900     		lsls	r1, r1, #3
+ 917 0042 2800     		movs	r0, r5
+ 918 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 919              	.LVL107:
+ 225:APP/src/drv8301.c ****         return 0; // 返回停止状态
+ 920              		.loc 1 225 9 view .LVU212
+ 921 0048 0022     		movs	r2, #0
+ 922 004a 0221     		movs	r1, #2
+ 923 004c 3000     		movs	r0, r6
+ 924 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 925              	.LVL108:
+ 226:APP/src/drv8301.c ****     }
+ 926              		.loc 1 226 9 view .LVU213
+ 226:APP/src/drv8301.c ****     }
+ 927              		.loc 1 226 16 is_stmt 0 view .LVU214
+ 928 0052 2000     		movs	r0, r4
+ 929 0054 F6E0     		b	.L44
+ 930              	.LVL109:
+ 931              	.L52:
+ 932              	.LBB13:
+ 933              	.LBB11:
+ 231:APP/src/drv8301.c ****         // 根据方向调整步序
+ 232:APP/src/drv8301.c ****         int current_step = (motor_direction == 1) ? step : (7 - step);
+ 233:APP/src/drv8301.c **** 
+ 234:APP/src/drv8301.c ****         // 执行六步换向逻辑
+ 235:APP/src/drv8301.c ****         switch (current_step) {
+ 236:APP/src/drv8301.c ****             case 1:
+ 237:APP/src/drv8301.c ****                 DRV8301_AH_H; DRV8301_DeadTime(); DRV8301_BL_H;
+ 934              		.loc 1 237 17 is_stmt 1 view .LVU215
+ 935 0056 8021     		movs	r1, #128
+ 936 0058 9025     		movs	r5, #144
+ 937 005a ED05     		lsls	r5, r5, #23
+ 938 005c 0122     		movs	r2, #1
+ 939 005e 4900     		lsls	r1, r1, #1
+ 940 0060 2800     		movs	r0, r5
+ 941 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 942              	.LVL110:
+ 943              		.loc 1 237 31 discriminator 1 view .LVU216
+ 944 0066 FFF7FEFF 		bl	DRV8301_DeadTime
+ 945              	.LVL111:
+ 946              		.loc 1 237 51 discriminator 2 view .LVU217
+ 947 006a 774E     		ldr	r6, .L57
+ 948 006c 0122     		movs	r2, #1
+ 949 006e 0121     		movs	r1, #1
+ 950 0070 3000     		movs	r0, r6
+ 951 0072 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 952              	.LVL112:
+ 238:APP/src/drv8301.c ****                 DRV8301_AL_L; DRV8301_BH_L; DRV8301_CH_L; DRV8301_CL_L;
+ 953              		.loc 1 238 17 view .LVU218
+ 954 0076 0022     		movs	r2, #0
+ 955 0078 8021     		movs	r1, #128
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 23
+
+
+ 956 007a 2800     		movs	r0, r5
+ 957 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 958              	.LVL113:
+ 959              		.loc 1 238 31 discriminator 1 view .LVU219
+ 960 0080 8021     		movs	r1, #128
+ 961 0082 0022     		movs	r2, #0
+ 962 0084 8900     		lsls	r1, r1, #2
+ 963 0086 2800     		movs	r0, r5
+ 964 0088 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 965              	.LVL114:
+ 966              		.loc 1 238 45 discriminator 2 view .LVU220
+ 967 008c 8021     		movs	r1, #128
+ 968 008e 0022     		movs	r2, #0
+ 969 0090 C900     		lsls	r1, r1, #3
+ 970 0092 2800     		movs	r0, r5
+ 971 0094 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 972              	.LVL115:
+ 973              		.loc 1 238 59 discriminator 3 view .LVU221
+ 974 0098 0022     		movs	r2, #0
+ 975 009a 0221     		movs	r1, #2
+ 976 009c 3000     		movs	r0, r6
+ 977 009e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 978              	.LVL116:
+ 239:APP/src/drv8301.c ****                 break;
+ 979              		.loc 1 239 17 view .LVU222
+ 980              	.L45:
+ 240:APP/src/drv8301.c ****             case 2:
+ 241:APP/src/drv8301.c ****                 DRV8301_AH_H; DRV8301_DeadTime(); DRV8301_CL_H;
+ 242:APP/src/drv8301.c ****                 DRV8301_AL_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CH_L;
+ 243:APP/src/drv8301.c ****                 break;
+ 244:APP/src/drv8301.c ****             case 3:
+ 245:APP/src/drv8301.c ****                 DRV8301_BH_H; DRV8301_DeadTime();  DRV8301_CL_H;
+ 246:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BL_L; DRV8301_CH_L;
+ 247:APP/src/drv8301.c ****                 break;
+ 248:APP/src/drv8301.c ****             case 4:
+ 249:APP/src/drv8301.c ****                 DRV8301_BH_H; DRV8301_DeadTime();  DRV8301_AL_H;
+ 250:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BL_L; DRV8301_CH_L; DRV8301_CL_L;
+ 251:APP/src/drv8301.c ****                 break;
+ 252:APP/src/drv8301.c ****             case 5:
+ 253:APP/src/drv8301.c ****                 DRV8301_CH_H; DRV8301_DeadTime();  DRV8301_AL_H;
+ 254:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CL_L;
+ 255:APP/src/drv8301.c ****                 break;
+ 256:APP/src/drv8301.c ****             case 6:
+ 257:APP/src/drv8301.c ****                 DRV8301_CH_H; DRV8301_DeadTime(); DRV8301_BL_H;
+ 258:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BH_L; DRV8301_CL_L;
+ 259:APP/src/drv8301.c ****                 break;
+ 260:APP/src/drv8301.c ****         }
+ 261:APP/src/drv8301.c **** 
+ 262:APP/src/drv8301.c ****         // 控制速度
+ 263:APP/src/drv8301.c **** 				delay_us(motor_speed);
+ 981              		.loc 1 263 5 view .LVU223
+ 982 00a2 FA20     		movs	r0, #250
+ 983 00a4 C000     		lsls	r0, r0, #3
+ 984 00a6 FFF7FEFF 		bl	delay_us
+ 985              	.LVL117:
+ 986              	.LBE11:
+ 230:APP/src/drv8301.c ****         // 根据方向调整步序
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 24
+
+
+ 987              		.loc 1 230 39 discriminator 2 view .LVU224
+ 988 00aa 0134     		adds	r4, r4, #1
+ 989              	.LVL118:
+ 990              	.L43:
+ 230:APP/src/drv8301.c ****         // 根据方向调整步序
+ 991              		.loc 1 230 29 discriminator 1 view .LVU225
+ 992 00ac 062C     		cmp	r4, #6
+ 993 00ae 00DD     		ble	.LCB825
+ 994 00b0 C7E0     		b	.L56	@long jump
+ 995              	.LCB825:
+ 996              	.LBB12:
+ 232:APP/src/drv8301.c **** 
+ 997              		.loc 1 232 9 view .LVU226
+ 998              	.LVL119:
+ 235:APP/src/drv8301.c ****             case 1:
+ 999              		.loc 1 235 9 view .LVU227
+ 1000 00b2 F6D8     		bhi	.L45
+ 1001 00b4 A300     		lsls	r3, r4, #2
+ 1002 00b6 654A     		ldr	r2, .L57+4
+ 1003 00b8 D358     		ldr	r3, [r2, r3]
+ 1004 00ba 9F46     		mov	pc, r3
+ 1005              		.section	.rodata.DRV8301_Motor_test,"a",%progbits
+ 1006              		.align	2
+ 1007              	.L47:
+ 1008 0000 A2000000 		.word	.L45
+ 1009 0004 56000000 		.word	.L52
+ 1010 0008 BC000000 		.word	.L51
+ 1011 000c 0A010000 		.word	.L50
+ 1012 0010 58010000 		.word	.L49
+ 1013 0014 A6010000 		.word	.L48
+ 1014 0018 F4010000 		.word	.L46
+ 1015              		.section	.text.DRV8301_Motor_test
+ 1016              	.L51:
+ 241:APP/src/drv8301.c ****                 DRV8301_AL_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1017              		.loc 1 241 17 view .LVU228
+ 1018 00bc 8021     		movs	r1, #128
+ 1019 00be 9025     		movs	r5, #144
+ 1020 00c0 ED05     		lsls	r5, r5, #23
+ 1021 00c2 0122     		movs	r2, #1
+ 1022 00c4 4900     		lsls	r1, r1, #1
+ 1023 00c6 2800     		movs	r0, r5
+ 1024 00c8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1025              	.LVL120:
+ 241:APP/src/drv8301.c ****                 DRV8301_AL_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1026              		.loc 1 241 31 discriminator 1 view .LVU229
+ 1027 00cc FFF7FEFF 		bl	DRV8301_DeadTime
+ 1028              	.LVL121:
+ 241:APP/src/drv8301.c ****                 DRV8301_AL_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1029              		.loc 1 241 51 discriminator 2 view .LVU230
+ 1030 00d0 5D4E     		ldr	r6, .L57
+ 1031 00d2 0122     		movs	r2, #1
+ 1032 00d4 0221     		movs	r1, #2
+ 1033 00d6 3000     		movs	r0, r6
+ 1034 00d8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1035              	.LVL122:
+ 242:APP/src/drv8301.c ****                 break;
+ 1036              		.loc 1 242 17 view .LVU231
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 25
+
+
+ 1037 00dc 0022     		movs	r2, #0
+ 1038 00de 8021     		movs	r1, #128
+ 1039 00e0 2800     		movs	r0, r5
+ 1040 00e2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1041              	.LVL123:
+ 242:APP/src/drv8301.c ****                 break;
+ 1042              		.loc 1 242 31 discriminator 1 view .LVU232
+ 1043 00e6 8021     		movs	r1, #128
+ 1044 00e8 0022     		movs	r2, #0
+ 1045 00ea 8900     		lsls	r1, r1, #2
+ 1046 00ec 2800     		movs	r0, r5
+ 1047 00ee FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1048              	.LVL124:
+ 242:APP/src/drv8301.c ****                 break;
+ 1049              		.loc 1 242 45 discriminator 2 view .LVU233
+ 1050 00f2 0022     		movs	r2, #0
+ 1051 00f4 0121     		movs	r1, #1
+ 1052 00f6 3000     		movs	r0, r6
+ 1053 00f8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1054              	.LVL125:
+ 242:APP/src/drv8301.c ****                 break;
+ 1055              		.loc 1 242 59 discriminator 3 view .LVU234
+ 1056 00fc 8021     		movs	r1, #128
+ 1057 00fe 0022     		movs	r2, #0
+ 1058 0100 C900     		lsls	r1, r1, #3
+ 1059 0102 2800     		movs	r0, r5
+ 1060 0104 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1061              	.LVL126:
+ 243:APP/src/drv8301.c ****             case 3:
+ 1062              		.loc 1 243 17 view .LVU235
+ 1063 0108 CBE7     		b	.L45
+ 1064              	.L50:
+ 245:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1065              		.loc 1 245 17 view .LVU236
+ 1066 010a 8021     		movs	r1, #128
+ 1067 010c 9025     		movs	r5, #144
+ 1068 010e ED05     		lsls	r5, r5, #23
+ 1069 0110 0122     		movs	r2, #1
+ 1070 0112 8900     		lsls	r1, r1, #2
+ 1071 0114 2800     		movs	r0, r5
+ 1072 0116 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1073              	.LVL127:
+ 245:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1074              		.loc 1 245 31 discriminator 1 view .LVU237
+ 1075 011a FFF7FEFF 		bl	DRV8301_DeadTime
+ 1076              	.LVL128:
+ 245:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BL_L; DRV8301_CH_L;
+ 1077              		.loc 1 245 52 discriminator 2 view .LVU238
+ 1078 011e 4A4E     		ldr	r6, .L57
+ 1079 0120 0122     		movs	r2, #1
+ 1080 0122 0221     		movs	r1, #2
+ 1081 0124 3000     		movs	r0, r6
+ 1082 0126 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1083              	.LVL129:
+ 246:APP/src/drv8301.c ****                 break;
+ 1084              		.loc 1 246 17 view .LVU239
+ 1085 012a 8021     		movs	r1, #128
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 26
+
+
+ 1086 012c 0022     		movs	r2, #0
+ 1087 012e 4900     		lsls	r1, r1, #1
+ 1088 0130 2800     		movs	r0, r5
+ 1089 0132 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1090              	.LVL130:
+ 246:APP/src/drv8301.c ****                 break;
+ 1091              		.loc 1 246 31 discriminator 1 view .LVU240
+ 1092 0136 0022     		movs	r2, #0
+ 1093 0138 8021     		movs	r1, #128
+ 1094 013a 2800     		movs	r0, r5
+ 1095 013c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1096              	.LVL131:
+ 246:APP/src/drv8301.c ****                 break;
+ 1097              		.loc 1 246 45 discriminator 2 view .LVU241
+ 1098 0140 0022     		movs	r2, #0
+ 1099 0142 0121     		movs	r1, #1
+ 1100 0144 3000     		movs	r0, r6
+ 1101 0146 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1102              	.LVL132:
+ 246:APP/src/drv8301.c ****                 break;
+ 1103              		.loc 1 246 59 discriminator 3 view .LVU242
+ 1104 014a 8021     		movs	r1, #128
+ 1105 014c 0022     		movs	r2, #0
+ 1106 014e C900     		lsls	r1, r1, #3
+ 1107 0150 2800     		movs	r0, r5
+ 1108 0152 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1109              	.LVL133:
+ 247:APP/src/drv8301.c ****             case 4:
+ 1110              		.loc 1 247 17 view .LVU243
+ 1111 0156 A4E7     		b	.L45
+ 1112              	.L49:
+ 249:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BL_L; DRV8301_CH_L; DRV8301_CL_L;
+ 1113              		.loc 1 249 17 view .LVU244
+ 1114 0158 8021     		movs	r1, #128
+ 1115 015a 9025     		movs	r5, #144
+ 1116 015c ED05     		lsls	r5, r5, #23
+ 1117 015e 0122     		movs	r2, #1
+ 1118 0160 8900     		lsls	r1, r1, #2
+ 1119 0162 2800     		movs	r0, r5
+ 1120 0164 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1121              	.LVL134:
+ 249:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BL_L; DRV8301_CH_L; DRV8301_CL_L;
+ 1122              		.loc 1 249 31 discriminator 1 view .LVU245
+ 1123 0168 FFF7FEFF 		bl	DRV8301_DeadTime
+ 1124              	.LVL135:
+ 249:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BL_L; DRV8301_CH_L; DRV8301_CL_L;
+ 1125              		.loc 1 249 52 discriminator 2 view .LVU246
+ 1126 016c 0122     		movs	r2, #1
+ 1127 016e 8021     		movs	r1, #128
+ 1128 0170 2800     		movs	r0, r5
+ 1129 0172 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1130              	.LVL136:
+ 250:APP/src/drv8301.c ****                 break;
+ 1131              		.loc 1 250 17 view .LVU247
+ 1132 0176 8021     		movs	r1, #128
+ 1133 0178 0022     		movs	r2, #0
+ 1134 017a 4900     		lsls	r1, r1, #1
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 27
+
+
+ 1135 017c 2800     		movs	r0, r5
+ 1136 017e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1137              	.LVL137:
+ 250:APP/src/drv8301.c ****                 break;
+ 1138              		.loc 1 250 31 discriminator 1 view .LVU248
+ 1139 0182 314E     		ldr	r6, .L57
+ 1140 0184 0022     		movs	r2, #0
+ 1141 0186 0121     		movs	r1, #1
+ 1142 0188 3000     		movs	r0, r6
+ 1143 018a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1144              	.LVL138:
+ 250:APP/src/drv8301.c ****                 break;
+ 1145              		.loc 1 250 45 discriminator 2 view .LVU249
+ 1146 018e 8021     		movs	r1, #128
+ 1147 0190 0022     		movs	r2, #0
+ 1148 0192 C900     		lsls	r1, r1, #3
+ 1149 0194 2800     		movs	r0, r5
+ 1150 0196 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1151              	.LVL139:
+ 250:APP/src/drv8301.c ****                 break;
+ 1152              		.loc 1 250 59 discriminator 3 view .LVU250
+ 1153 019a 0022     		movs	r2, #0
+ 1154 019c 0221     		movs	r1, #2
+ 1155 019e 3000     		movs	r0, r6
+ 1156 01a0 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1157              	.LVL140:
+ 251:APP/src/drv8301.c ****             case 5:
+ 1158              		.loc 1 251 17 view .LVU251
+ 1159 01a4 7DE7     		b	.L45
+ 1160              	.L48:
+ 253:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CL_L;
+ 1161              		.loc 1 253 17 view .LVU252
+ 1162 01a6 8021     		movs	r1, #128
+ 1163 01a8 9025     		movs	r5, #144
+ 1164 01aa ED05     		lsls	r5, r5, #23
+ 1165 01ac 0122     		movs	r2, #1
+ 1166 01ae C900     		lsls	r1, r1, #3
+ 1167 01b0 2800     		movs	r0, r5
+ 1168 01b2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1169              	.LVL141:
+ 253:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CL_L;
+ 1170              		.loc 1 253 31 discriminator 1 view .LVU253
+ 1171 01b6 FFF7FEFF 		bl	DRV8301_DeadTime
+ 1172              	.LVL142:
+ 253:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_BH_L; DRV8301_BL_L; DRV8301_CL_L;
+ 1173              		.loc 1 253 52 discriminator 2 view .LVU254
+ 1174 01ba 0122     		movs	r2, #1
+ 1175 01bc 8021     		movs	r1, #128
+ 1176 01be 2800     		movs	r0, r5
+ 1177 01c0 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1178              	.LVL143:
+ 254:APP/src/drv8301.c ****                 break;
+ 1179              		.loc 1 254 17 view .LVU255
+ 1180 01c4 8021     		movs	r1, #128
+ 1181 01c6 0022     		movs	r2, #0
+ 1182 01c8 4900     		lsls	r1, r1, #1
+ 1183 01ca 2800     		movs	r0, r5
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 28
+
+
+ 1184 01cc FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1185              	.LVL144:
+ 254:APP/src/drv8301.c ****                 break;
+ 1186              		.loc 1 254 31 discriminator 1 view .LVU256
+ 1187 01d0 8021     		movs	r1, #128
+ 1188 01d2 0022     		movs	r2, #0
+ 1189 01d4 8900     		lsls	r1, r1, #2
+ 1190 01d6 2800     		movs	r0, r5
+ 1191 01d8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1192              	.LVL145:
+ 254:APP/src/drv8301.c ****                 break;
+ 1193              		.loc 1 254 45 discriminator 2 view .LVU257
+ 1194 01dc 1A4D     		ldr	r5, .L57
+ 1195 01de 0022     		movs	r2, #0
+ 1196 01e0 0121     		movs	r1, #1
+ 1197 01e2 2800     		movs	r0, r5
+ 1198 01e4 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1199              	.LVL146:
+ 254:APP/src/drv8301.c ****                 break;
+ 1200              		.loc 1 254 59 discriminator 3 view .LVU258
+ 1201 01e8 0022     		movs	r2, #0
+ 1202 01ea 0221     		movs	r1, #2
+ 1203 01ec 2800     		movs	r0, r5
+ 1204 01ee FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1205              	.LVL147:
+ 255:APP/src/drv8301.c ****             case 6:
+ 1206              		.loc 1 255 17 view .LVU259
+ 1207 01f2 56E7     		b	.L45
+ 1208              	.L46:
+ 257:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BH_L; DRV8301_CL_L;
+ 1209              		.loc 1 257 17 view .LVU260
+ 1210 01f4 8021     		movs	r1, #128
+ 1211 01f6 9025     		movs	r5, #144
+ 1212 01f8 ED05     		lsls	r5, r5, #23
+ 1213 01fa 0122     		movs	r2, #1
+ 1214 01fc C900     		lsls	r1, r1, #3
+ 1215 01fe 2800     		movs	r0, r5
+ 1216 0200 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1217              	.LVL148:
+ 257:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BH_L; DRV8301_CL_L;
+ 1218              		.loc 1 257 31 discriminator 1 view .LVU261
+ 1219 0204 FFF7FEFF 		bl	DRV8301_DeadTime
+ 1220              	.LVL149:
+ 257:APP/src/drv8301.c ****                 DRV8301_AH_L; DRV8301_AL_L; DRV8301_BH_L; DRV8301_CL_L;
+ 1221              		.loc 1 257 51 discriminator 2 view .LVU262
+ 1222 0208 0F4E     		ldr	r6, .L57
+ 1223 020a 0122     		movs	r2, #1
+ 1224 020c 0121     		movs	r1, #1
+ 1225 020e 3000     		movs	r0, r6
+ 1226 0210 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1227              	.LVL150:
+ 258:APP/src/drv8301.c ****                 break;
+ 1228              		.loc 1 258 17 view .LVU263
+ 1229 0214 8021     		movs	r1, #128
+ 1230 0216 0022     		movs	r2, #0
+ 1231 0218 4900     		lsls	r1, r1, #1
+ 1232 021a 2800     		movs	r0, r5
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 29
+
+
+ 1233 021c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1234              	.LVL151:
+ 258:APP/src/drv8301.c ****                 break;
+ 1235              		.loc 1 258 31 discriminator 1 view .LVU264
+ 1236 0220 0022     		movs	r2, #0
+ 1237 0222 8021     		movs	r1, #128
+ 1238 0224 2800     		movs	r0, r5
+ 1239 0226 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1240              	.LVL152:
+ 258:APP/src/drv8301.c ****                 break;
+ 1241              		.loc 1 258 45 discriminator 2 view .LVU265
+ 1242 022a 8021     		movs	r1, #128
+ 1243 022c 0022     		movs	r2, #0
+ 1244 022e 8900     		lsls	r1, r1, #2
+ 1245 0230 2800     		movs	r0, r5
+ 1246 0232 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1247              	.LVL153:
+ 258:APP/src/drv8301.c ****                 break;
+ 1248              		.loc 1 258 59 discriminator 3 view .LVU266
+ 1249 0236 0022     		movs	r2, #0
+ 1250 0238 0221     		movs	r1, #2
+ 1251 023a 3000     		movs	r0, r6
+ 1252 023c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1253              	.LVL154:
+ 259:APP/src/drv8301.c ****         }
+ 1254              		.loc 1 259 17 view .LVU267
+ 1255 0240 2FE7     		b	.L45
+ 1256              	.LVL155:
+ 1257              	.L56:
+ 259:APP/src/drv8301.c ****         }
+ 1258              		.loc 1 259 17 is_stmt 0 view .LVU268
+ 1259              	.LBE12:
+ 1260              	.LBE13:
+ 264:APP/src/drv8301.c ****         //HAL_Delay(motor_speed);
+ 265:APP/src/drv8301.c ****     }
+ 266:APP/src/drv8301.c **** 
+ 267:APP/src/drv8301.c ****     return 1; // 返回运行状态
+ 1261              		.loc 1 267 12 view .LVU269
+ 1262 0242 0120     		movs	r0, #1
+ 1263              	.LVL156:
+ 1264              	.L44:
+ 268:APP/src/drv8301.c **** }
+ 1265              		.loc 1 268 1 view .LVU270
+ 1266              		@ sp needed
+ 1267 0244 70BD     		pop	{r4, r5, r6, pc}
+ 1268              	.L58:
+ 1269 0246 C046     		.align	2
+ 1270              	.L57:
+ 1271 0248 00040048 		.word	1207960576
+ 1272 024c 00000000 		.word	.L47
+ 1273              		.cfi_endproc
+ 1274              	.LFE50:
+ 1276              		.section	.rodata
+ 1277              		.align	2
+ 1278              		.set	.LANCHOR0,. + 0
+ 1279              	.LC0:
+ 1280 0000 00002041 		.word	1092616192
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 30
+
+
+ 1281 0004 0000A041 		.word	1101004800
+ 1282 0008 00002042 		.word	1109393408
+ 1283 000c 0000A042 		.word	1117782016
+ 1284              		.text
+ 1285              	.Letext0:
+ 1286              		.file 2 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-none
+ 1287              		.file 3 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-none
+ 1288              		.file 4 "APP/inc/drv8301.h"
+ 1289              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f031x6.h"
+ 1290              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 1291              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 1292              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 1293              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h"
+ 1294              		.file 10 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-non
+ 1295              		.file 11 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-non
+ 1296              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 1297              		.file 13 "APP/inc/utils.h"
+ 1298              		.file 14 "Core/Inc/spi.h"
+ 1299              		.file 15 "<built-in>"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 drv8301.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:19     .rodata.DRV8301_ReadReg.str1.4:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:23     .text.DRV8301_ReadReg:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:29     .text.DRV8301_ReadReg:00000000 DRV8301_ReadReg
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:240    .text.DRV8301_ReadReg:000000e0 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:248    .text.DRV8301_WriteReg:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:254    .text.DRV8301_WriteReg:00000000 DRV8301_WriteReg
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:355    .text.DRV8301_WriteReg:0000006c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:361    .text.DRV8301_Config:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:367    .text.DRV8301_Config:00000000 DRV8301_Config
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:497    .text.DRV8301_Config:00000074 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:503    .rodata.DRV8301_Init.str1.4:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:515    .text.DRV8301_Init:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:521    .text.DRV8301_Init:00000000 DRV8301_Init
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:728    .text.DRV8301_Init:000000e8 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:737    .rodata.DRV8301_SPI_test.str1.4:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:744    .text.DRV8301_SPI_test:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:750    .text.DRV8301_SPI_test:00000000 DRV8301_SPI_test
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:818    .text.DRV8301_SPI_test:00000034 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:825    .text.DRV8301_DeadTime:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:831    .text.DRV8301_DeadTime:00000000 DRV8301_DeadTime
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:852    .text.DRV8301_Motor_test:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:858    .text.DRV8301_Motor_test:00000000 DRV8301_Motor_test
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:1006   .rodata.DRV8301_Motor_test:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:1271   .text.DRV8301_Motor_test:00000248 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZh7cE6.s:1277   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+delay_us
+HAL_SPI_TransmitReceive
+printf
+hspi1
+__aeabi_fcmpgt
+memcpy
+HAL_Delay
+puts

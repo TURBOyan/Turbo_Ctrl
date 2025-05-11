@@ -1,0 +1,295 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"utils.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "APP/src/utils.c"
+  18              		.section	.text.getCurrentMicros,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	getCurrentMicros:
+  25              	.LFB41:
+   1:APP/src/utils.c **** #include "utils.h"
+   2:APP/src/utils.c **** #include "stm32f0xx_hal.h"
+   3:APP/src/utils.c **** 
+   4:APP/src/utils.c **** __STATIC_INLINE uint32_t GXT_SYSTICK_IsActiveCounterFlag(void)
+   5:APP/src/utils.c **** {
+   6:APP/src/utils.c ****   return ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == (SysTick_CTRL_COUNTFLAG_Msk));
+   7:APP/src/utils.c **** }
+   8:APP/src/utils.c **** static uint32_t getCurrentMicros(void)
+   9:APP/src/utils.c **** {
+  26              		.loc 1 9 1 view -0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 8
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 30B5     		push	{r4, r5, lr}
+  31              		.cfi_def_cfa_offset 12
+  32              		.cfi_offset 4, -12
+  33              		.cfi_offset 5, -8
+  34              		.cfi_offset 14, -4
+  35 0002 83B0     		sub	sp, sp, #12
+  36              		.cfi_def_cfa_offset 24
+  10:APP/src/utils.c ****   /* Ensure COUNTFLAG is reset by reading SysTick control and status register */
+  11:APP/src/utils.c ****   GXT_SYSTICK_IsActiveCounterFlag();
+  37              		.loc 1 11 3 view .LVU1
+  38              	.LBB6:
+  39              	.LBI6:
+   4:APP/src/utils.c **** {
+  40              		.loc 1 4 26 view .LVU2
+  41              	.LBB7:
+   6:APP/src/utils.c **** }
+  42              		.loc 1 6 3 view .LVU3
+   6:APP/src/utils.c **** }
+  43              		.loc 1 6 19 is_stmt 0 view .LVU4
+  44 0004 114C     		ldr	r4, .L5
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 2
+
+
+  45 0006 2368     		ldr	r3, [r4]
+  46              	.LBE7:
+  47              	.LBE6:
+  12:APP/src/utils.c ****   uint32_t m = HAL_GetTick();
+  48              		.loc 1 12 3 is_stmt 1 view .LVU5
+  49              		.loc 1 12 16 is_stmt 0 view .LVU6
+  50 0008 FFF7FEFF 		bl	HAL_GetTick
+  51              	.LVL0:
+  13:APP/src/utils.c ****   const uint32_t tms = SysTick->LOAD + 1;
+  52              		.loc 1 13 3 is_stmt 1 view .LVU7
+  53              		.loc 1 13 31 is_stmt 0 view .LVU8
+  54 000c 6568     		ldr	r5, [r4, #4]
+  55              		.loc 1 13 18 view .LVU9
+  56 000e 0135     		adds	r5, r5, #1
+  57              	.LVL1:
+  14:APP/src/utils.c ****   __IO uint32_t u = tms - SysTick->VAL;
+  58              		.loc 1 14 3 is_stmt 1 view .LVU10
+  59              		.loc 1 14 34 is_stmt 0 view .LVU11
+  60 0010 A368     		ldr	r3, [r4, #8]
+  61              		.loc 1 14 25 view .LVU12
+  62 0012 EB1A     		subs	r3, r5, r3
+  63              		.loc 1 14 17 view .LVU13
+  64 0014 0193     		str	r3, [sp, #4]
+  15:APP/src/utils.c ****   if (GXT_SYSTICK_IsActiveCounterFlag()) {
+  65              		.loc 1 15 3 is_stmt 1 view .LVU14
+  66              	.LBB8:
+  67              	.LBI8:
+   4:APP/src/utils.c **** {
+  68              		.loc 1 4 26 view .LVU15
+  69              	.LBB9:
+   6:APP/src/utils.c **** }
+  70              		.loc 1 6 3 view .LVU16
+   6:APP/src/utils.c **** }
+  71              		.loc 1 6 19 is_stmt 0 view .LVU17
+  72 0016 2368     		ldr	r3, [r4]
+  73              	.LBE9:
+  74              	.LBE8:
+  75              		.loc 1 15 6 discriminator 1 view .LVU18
+  76 0018 DB03     		lsls	r3, r3, #15
+  77 001a 10D4     		bmi	.L4
+  78              	.L2:
+  16:APP/src/utils.c ****     m = HAL_GetTick();
+  17:APP/src/utils.c ****     u = tms - SysTick->VAL;
+  18:APP/src/utils.c ****   }
+  19:APP/src/utils.c ****   return (m * 1000 + (u * 1000) / tms);
+  79              		.loc 1 19 3 is_stmt 1 view .LVU19
+  80              		.loc 1 19 13 is_stmt 0 view .LVU20
+  81 001c 4401     		lsls	r4, r0, #5
+  82 001e 241A     		subs	r4, r4, r0
+  83 0020 A400     		lsls	r4, r4, #2
+  84 0022 2418     		adds	r4, r4, r0
+  85 0024 E400     		lsls	r4, r4, #3
+  86              		.loc 1 19 25 view .LVU21
+  87 0026 019B     		ldr	r3, [sp, #4]
+  88 0028 5801     		lsls	r0, r3, #5
+  89              	.LVL2:
+  90              		.loc 1 19 25 view .LVU22
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 3
+
+
+  91 002a C01A     		subs	r0, r0, r3
+  92 002c 8000     		lsls	r0, r0, #2
+  93 002e C018     		adds	r0, r0, r3
+  94 0030 C000     		lsls	r0, r0, #3
+  95              		.loc 1 19 33 view .LVU23
+  96 0032 2900     		movs	r1, r5
+  97 0034 FFF7FEFF 		bl	__aeabi_uidiv
+  98              	.LVL3:
+  99              		.loc 1 19 20 view .LVU24
+ 100 0038 2018     		adds	r0, r4, r0
+  20:APP/src/utils.c **** }
+ 101              		.loc 1 20 1 view .LVU25
+ 102 003a 03B0     		add	sp, sp, #12
+ 103              		@ sp needed
+ 104              	.LVL4:
+ 105              		.loc 1 20 1 view .LVU26
+ 106 003c 30BD     		pop	{r4, r5, pc}
+ 107              	.LVL5:
+ 108              	.L4:
+  16:APP/src/utils.c ****     m = HAL_GetTick();
+ 109              		.loc 1 16 5 is_stmt 1 view .LVU27
+  16:APP/src/utils.c ****     m = HAL_GetTick();
+ 110              		.loc 1 16 9 is_stmt 0 view .LVU28
+ 111 003e FFF7FEFF 		bl	HAL_GetTick
+ 112              	.LVL6:
+  17:APP/src/utils.c ****   }
+ 113              		.loc 1 17 5 is_stmt 1 view .LVU29
+  17:APP/src/utils.c ****   }
+ 114              		.loc 1 17 22 is_stmt 0 view .LVU30
+ 115 0042 A368     		ldr	r3, [r4, #8]
+  17:APP/src/utils.c ****   }
+ 116              		.loc 1 17 13 view .LVU31
+ 117 0044 EB1A     		subs	r3, r5, r3
+  17:APP/src/utils.c ****   }
+ 118              		.loc 1 17 7 view .LVU32
+ 119 0046 0193     		str	r3, [sp, #4]
+ 120 0048 E8E7     		b	.L2
+ 121              	.L6:
+ 122 004a C046     		.align	2
+ 123              	.L5:
+ 124 004c 10E000E0 		.word	-536813552
+ 125              		.cfi_endproc
+ 126              	.LFE41:
+ 128              		.section	.text.micros,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	micros
+ 131              		.syntax unified
+ 132              		.code	16
+ 133              		.thumb_func
+ 135              	micros:
+ 136              	.LFB42:
+  21:APP/src/utils.c **** //获取系统时间，单位us
+  22:APP/src/utils.c **** uint32_t micros(void)
+  23:APP/src/utils.c **** {
+ 137              		.loc 1 23 1 is_stmt 1 view -0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 4
+
+
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141 0000 10B5     		push	{r4, lr}
+ 142              		.cfi_def_cfa_offset 8
+ 143              		.cfi_offset 4, -8
+ 144              		.cfi_offset 14, -4
+  24:APP/src/utils.c ****   return getCurrentMicros();
+ 145              		.loc 1 24 3 view .LVU34
+ 146              		.loc 1 24 10 is_stmt 0 view .LVU35
+ 147 0002 FFF7FEFF 		bl	getCurrentMicros
+ 148              	.LVL7:
+  25:APP/src/utils.c **** }
+ 149              		.loc 1 25 1 view .LVU36
+ 150              		@ sp needed
+ 151 0006 10BD     		pop	{r4, pc}
+ 152              		.cfi_endproc
+ 153              	.LFE42:
+ 155              		.section	.text.delay_us,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	delay_us
+ 158              		.syntax unified
+ 159              		.code	16
+ 160              		.thumb_func
+ 162              	delay_us:
+ 163              	.LVL8:
+ 164              	.LFB43:
+  26:APP/src/utils.c **** 
+  27:APP/src/utils.c **** // @brief: Busy wait delay for given amount of microseconds (us)
+  28:APP/src/utils.c **** void delay_us(uint32_t us)
+  29:APP/src/utils.c **** {
+ 165              		.loc 1 29 1 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		.loc 1 29 1 is_stmt 0 view .LVU38
+ 170 0000 70B5     		push	{r4, r5, r6, lr}
+ 171              		.cfi_def_cfa_offset 16
+ 172              		.cfi_offset 4, -16
+ 173              		.cfi_offset 5, -12
+ 174              		.cfi_offset 6, -8
+ 175              		.cfi_offset 14, -4
+ 176 0002 0500     		movs	r5, r0
+  30:APP/src/utils.c ****     uint32_t start = micros();
+ 177              		.loc 1 30 5 is_stmt 1 view .LVU39
+ 178              		.loc 1 30 22 is_stmt 0 view .LVU40
+ 179 0004 FFF7FEFF 		bl	micros
+ 180              	.LVL9:
+ 181              		.loc 1 30 22 view .LVU41
+ 182 0008 0400     		movs	r4, r0
+ 183              	.LVL10:
+  31:APP/src/utils.c ****     while (micros() - start < (uint32_t) us) {
+ 184              		.loc 1 31 5 is_stmt 1 view .LVU42
+ 185              		.loc 1 31 11 is_stmt 0 view .LVU43
+ 186 000a 00E0     		b	.L9
+ 187              	.LVL11:
+ 188              	.L10:
+  32:APP/src/utils.c ****         __ASM("nop");
+ 189              		.loc 1 32 9 is_stmt 1 view .LVU44
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 5
+
+
+ 190              		.syntax divided
+ 191              	@ 32 "APP/src/utils.c" 1
+ 192 000c C046     		nop
+ 193              	@ 0 "" 2
+ 194              		.thumb
+ 195              		.syntax unified
+ 196              	.L9:
+  31:APP/src/utils.c ****     while (micros() - start < (uint32_t) us) {
+ 197              		.loc 1 31 29 view .LVU45
+  31:APP/src/utils.c ****     while (micros() - start < (uint32_t) us) {
+ 198              		.loc 1 31 12 is_stmt 0 view .LVU46
+ 199 000e FFF7FEFF 		bl	micros
+ 200              	.LVL12:
+  31:APP/src/utils.c ****     while (micros() - start < (uint32_t) us) {
+ 201              		.loc 1 31 21 discriminator 1 view .LVU47
+ 202 0012 001B     		subs	r0, r0, r4
+  31:APP/src/utils.c ****     while (micros() - start < (uint32_t) us) {
+ 203              		.loc 1 31 29 discriminator 1 view .LVU48
+ 204 0014 A842     		cmp	r0, r5
+ 205 0016 F9D3     		bcc	.L10
+  33:APP/src/utils.c ****     }
+  34:APP/src/utils.c **** }...
+ 206              		.loc 1 34 1 view .LVU49
+ 207              		@ sp needed
+ 208              	.LVL13:
+ 209              	.LVL14:
+ 210              		.loc 1 34 1 view .LVU50
+ 211 0018 70BD     		pop	{r4, r5, r6, pc}
+ 212              		.cfi_endproc
+ 213              	.LFE43:
+ 215              		.text
+ 216              	.Letext0:
+ 217              		.file 2 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-none
+ 218              		.file 3 "D:/software/Tools/GCC/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/arm-none
+ 219              		.file 4 "Drivers/CMSIS/Include/core_cm0.h"
+ 220              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 utils.c
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:19     .text.getCurrentMicros:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:24     .text.getCurrentMicros:00000000 getCurrentMicros
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:124    .text.getCurrentMicros:0000004c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:129    .text.micros:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:135    .text.micros:00000000 micros
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:156    .text.delay_us:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cc42nvwl.s:162    .text.delay_us:00000000 delay_us
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+__aeabi_uidiv

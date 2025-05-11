@@ -22,7 +22,7 @@ int16_t DRV8301_ReadReg(const RegName_e regName, uint16_t* data)
 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
 	if (ret != HAL_OK)
 	{
-		printf("HAL_SPI_TransmitReceive Err:0x%X\n\r",ret);
+		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
 		return -1;
 	}
 	DRV8301_SPI_M1_CS_H;
@@ -36,7 +36,7 @@ int16_t DRV8301_ReadReg(const RegName_e regName, uint16_t* data)
 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
 	if (ret != HAL_OK)
 	{
-		printf("HAL_SPI_TransmitReceive Err:0x%X\n\r",ret);
+		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
 		return -1;
 	}
 	DRV8301_SPI_M1_CS_H;
@@ -65,7 +65,7 @@ int16_t DRV8301_WriteReg(const RegName_e regName, const uint16_t data)
 	ret = HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)(&tx_buf_), (uint8_t *)(&rx_buf_), 1, 1000);
 	if (ret != HAL_OK)
 	{
-		printf("HAL_SPI_TransmitReceive Err:0x%X\n\r",ret);
+		printf("HAL_SPI_TransmitReceive Err:0x%X\r\n",ret);
 		return -1;
 	}
 	delay_us(1);
@@ -120,7 +120,7 @@ bool DRV8301_Config(RegisterFile* pRegs, float requested_gain, float* actual_gai
         DRV8301_GATE_ENABLE;
     }
 		
-		//printf("DRV8301_Config success\n\r");
+		//printf("DRV8301_Config success\r\n");
 
     return 0;
 }
@@ -152,18 +152,18 @@ int16_t DRV8301_Init(RegisterFile* pRegs)
 	ret = DRV8301_ReadReg(kRegNameControl1, &val);
 	if(val != pRegs->control_register_1)
 	{
-		printf("set kRegNameControl1 Error,ret:%d actual:0x%X expect:0x%X\n\r",ret, val, pRegs->control_register_1);
+		printf("set kRegNameControl1 Error,ret:%d actual:0x%X expect:0x%X\r\n",ret, val, pRegs->control_register_1);
 		return -2;
 	}
 	
 	ret = DRV8301_ReadReg(kRegNameControl2, &val);
 	if(val != pRegs->control_register_2)
 	{
-		printf("set kRegNameControl2 Error,ret:%d actual:0x%X expect:0x%X\n\r",ret, val, pRegs->control_register_2);
+		printf("set kRegNameControl2 Error,ret:%d actual:0x%X expect:0x%X\r\n",ret, val, pRegs->control_register_2);
 		return -3;
 	}
 	
-	printf("DRV8301_Init success\n\r");
+	printf("DRV8301_Init success\r\n");
 
 	return 0;
 }
@@ -177,12 +177,12 @@ int16_t DRV8301_SPI_test(void)
 	ret = DRV8301_Config(&regs_, 40.0f, &actual_gain);
 	if(ret != 0)
 	{
-		printf("DRV8301_Config Err:%d\n\r",ret);
+		printf("DRV8301_Config Err:%d\r\n",ret);
 	}
 	ret = DRV8301_Init(&regs_);
 	if(ret != 0)
 	{
-		printf("DRV8301_Init Err:%d\n\r",ret);
+		printf("DRV8301_Init Err:%d\r\n",ret);
 	}
 	return 0;
 }
