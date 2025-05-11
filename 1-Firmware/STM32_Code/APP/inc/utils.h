@@ -2,12 +2,13 @@
 #define __UTILS_H__
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include <stdint.h>
 
-void delay_us(uint32_t us);
+    void delay_us(uint32_t us);
 
 #ifdef __cplusplus
 }

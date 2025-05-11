@@ -12,13 +12,14 @@ static uint32_t getCurrentMicros(void)
   uint32_t m = HAL_GetTick();
   const uint32_t tms = SysTick->LOAD + 1;
   __IO uint32_t u = tms - SysTick->VAL;
-  if (GXT_SYSTICK_IsActiveCounterFlag()) {
+  if (GXT_SYSTICK_IsActiveCounterFlag())
+  {
     m = HAL_GetTick();
     u = tms - SysTick->VAL;
   }
   return (m * 1000 + (u * 1000) / tms);
 }
-//获取系统时间，单位us
+// 获取系统时间，单位us
 uint32_t micros(void)
 {
   return getCurrentMicros();
@@ -27,8 +28,9 @@ uint32_t micros(void)
 // @brief: Busy wait delay for given amount of microseconds (us)
 void delay_us(uint32_t us)
 {
-    uint32_t start = micros();
-    while (micros() - start < (uint32_t) us) {
-        __ASM("nop");
-    }
+  uint32_t start = micros();
+  while (micros() - start < (uint32_t)us)
+  {
+    __ASM("nop");
+  }
 }
