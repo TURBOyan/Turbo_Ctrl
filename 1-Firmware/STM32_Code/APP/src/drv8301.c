@@ -4,6 +4,7 @@
 #include "stm32f0xx_hal.h"
 
 #include "spi.h"
+#include "tim.h"
 
 static inline uint16_t build_ctrl_word(const CtrlMode_e ctrlMode,
 									   const RegName_e regName,
@@ -183,18 +184,18 @@ int16_t DRV8301_SPI_test(void)
 	return 0;
 }
 
-#define DRV8301_AH_H HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_SET)
-#define DRV8301_AH_L HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_RESET)
+#define DRV8301_AH_H HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1)//HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_SET)
+#define DRV8301_AH_L HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1)//HAL_GPIO_WritePin(GPIOA, AH_Pin, GPIO_PIN_RESET)
 #define DRV8301_AL_H HAL_GPIO_WritePin(GPIOA, AL_Pin, GPIO_PIN_SET)
 #define DRV8301_AL_L HAL_GPIO_WritePin(GPIOA, AL_Pin, GPIO_PIN_RESET)
 
-#define DRV8301_BH_H HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_SET)
-#define DRV8301_BH_L HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_RESET)
+#define DRV8301_BH_H HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2)//HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_SET)
+#define DRV8301_BH_L HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2)//HAL_GPIO_WritePin(GPIOA, BH_Pin, GPIO_PIN_RESET)
 #define DRV8301_BL_H HAL_GPIO_WritePin(GPIOB, BL_Pin, GPIO_PIN_SET)
 #define DRV8301_BL_L HAL_GPIO_WritePin(GPIOB, BL_Pin, GPIO_PIN_RESET)
 
-#define DRV8301_CH_H HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_SET)
-#define DRV8301_CH_L HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_RESET)
+#define DRV8301_CH_H HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3)//HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_SET)
+#define DRV8301_CH_L HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3)//HAL_GPIO_WritePin(GPIOA, CH_Pin, GPIO_PIN_RESET)
 #define DRV8301_CL_H HAL_GPIO_WritePin(GPIOB, CL_Pin, GPIO_PIN_SET)
 #define DRV8301_CL_L HAL_GPIO_WritePin(GPIOB, CL_Pin, GPIO_PIN_RESET)
 
@@ -234,64 +235,33 @@ int16_t DRV8301_Motor_test(int16_t status)
 		switch (current_step)
 		{
 		case 1:
-			DRV8301_AH_H;
-			DRV8301_DeadTime();
-			DRV8301_BL_H;
-			DRV8301_AL_L;
-			DRV8301_BH_L;
-			DRV8301_CH_L;
-			DRV8301_CL_L;
+			DRV8301_AH_H; DRV8301_BH_L; DRV8301_CH_L;
+			DRV8301_AL_L; DRV8301_BL_H; DRV8301_CL_L;
 			break;
 		case 2:
-			DRV8301_AH_H;
-			DRV8301_DeadTime();
-			DRV8301_CL_H;
-			DRV8301_AL_L;
-			DRV8301_BH_L;
-			DRV8301_BL_L;
-			DRV8301_CH_L;
+			DRV8301_AH_L; DRV8301_BH_L; DRV8301_CH_H;
+			DRV8301_AL_L; DRV8301_BL_H; DRV8301_CL_L;
 			break;
 		case 3:
-			DRV8301_BH_H;
-			DRV8301_DeadTime();
-			DRV8301_CL_H;
-			DRV8301_AH_L;
-			DRV8301_AL_L;
-			DRV8301_BL_L;
-			DRV8301_CH_L;
+			DRV8301_AH_L; DRV8301_BH_L; DRV8301_CH_H;
+			DRV8301_AL_H; DRV8301_BL_L; DRV8301_CL_L;
 			break;
 		case 4:
-			DRV8301_BH_H;
-			DRV8301_DeadTime();
-			DRV8301_AL_H;
-			DRV8301_AH_L;
-			DRV8301_BL_L;
-			DRV8301_CH_L;
-			DRV8301_CL_L;
+			DRV8301_AH_L; DRV8301_BH_H; DRV8301_CH_L;
+			DRV8301_AL_H; DRV8301_BL_L; DRV8301_CL_L;
 			break;
 		case 5:
-			DRV8301_CH_H;
-			DRV8301_DeadTime();
-			DRV8301_AL_H;
-			DRV8301_AH_L;
-			DRV8301_BH_L;
-			DRV8301_BL_L;
-			DRV8301_CL_L;
+			DRV8301_AH_L; DRV8301_BH_H; DRV8301_CH_L;
+			DRV8301_AL_L; DRV8301_BL_L; DRV8301_CL_H;
 			break;
 		case 6:
-			DRV8301_CH_H;
-			DRV8301_DeadTime();
-			DRV8301_BL_H;
-			DRV8301_AH_L;
-			DRV8301_AL_L;
-			DRV8301_BH_L;
-			DRV8301_CL_L;
+			DRV8301_AH_H; DRV8301_BH_L; DRV8301_CH_L;
+			DRV8301_AL_L; DRV8301_BL_L; DRV8301_CL_H;
 			break;
 		}
 
 		// 控制速度
 		delay_us(motor_speed);
-		// HAL_Delay(motor_speed);
 	}
 
 	return 1; // 返回运行状态

@@ -72,12 +72,6 @@ void Error_Handler(void);
 #define BUTTON_Pin GPIO_PIN_2
 #define BUTTON_GPIO_Port GPIOB
 #define BUTTON_EXTI_IRQn EXTI2_3_IRQn
-#define AH_Pin GPIO_PIN_8
-#define AH_GPIO_Port GPIOA
-#define BH_Pin GPIO_PIN_9
-#define BH_GPIO_Port GPIOA
-#define CH_Pin GPIO_PIN_10
-#define CH_GPIO_Port GPIOA
 #define EN_GATE_Pin GPIO_PIN_4
 #define EN_GATE_GPIO_Port GPIOB
 #define FAULT_Pin GPIO_PIN_8

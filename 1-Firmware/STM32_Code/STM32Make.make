@@ -87,6 +87,7 @@ Core/Src/stm32f0xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/sysmem.c \
 Core/Src/system_stm32f0xx.c \
+Core/Src/tim.c \
 Core/Src/usart.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.c \
@@ -105,6 +106,8 @@ Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi_ex.c \
+Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c \
+Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c
 
